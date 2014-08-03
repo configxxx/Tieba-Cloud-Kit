@@ -13,9 +13,10 @@ $config=array('<?php header("Content-Type: text/html;charset=utf-8");'."\n",
 			  '?>');
 file_put_contents($configinc,$config);
 //todo:读取confiincphp然后连接
-$mysql=new mysql_server("127.0.0.1","root","","test");
+require_once($configinc);
+$mysql=new mysql_server(TK_HOST,TK_NAME,TK_PASSWORD,TK_TABLE);
 $mysql->sql_operator();
-$mysql->admin_query("克苏鲁","123");
+$mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Install</title>
