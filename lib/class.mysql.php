@@ -51,17 +51,38 @@ class mysql_main{
 		$this->admin_name=$_name;
 		$this->admin_password=$_password;
 	}
-	function insert_member($sql_content,$username)
+	function connect_member($sql_content,$flag)
 	{
-		$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
-		if(!$con)
+		if($flag==0)//log or regist
 		{
-			die("connecting error");
-		}else{
-			if(mysql_select_db(TK_TABLE, $con))
+			$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
+			if(!$con)
 			{
-				@mysql_query($sql_content)
-				or die("mysql query error;");
+				die("connecting error");
+			}else{
+				if(mysql_select_db(TK_TABLE, $con))
+				{
+					@mysql_query($sql_content)
+					or die("mysql query error;");
+				}
+			}
+		}
+		else{
+			$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
+			if(!$con)
+			{
+				die("connecting error");
+			}else{
+				if(mysql_select_db(TK_TABLE, $con))
+				{
+					$check=mysql_query($sql_content);
+					if($result = mysql_fetch_array($check))
+					{
+						echo"登陆成功";
+					}else{
+						echo"登陆失败";
+					}
+				}
 			}
 		}
 	}
