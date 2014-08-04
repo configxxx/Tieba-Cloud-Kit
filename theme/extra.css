@@ -14,23 +14,6 @@ body {
     width: 600px;
     margin: 0 auto;
     padding-top: 5%;
-}
-#comment p{
-	font-family: Helvetica, Arial, sans-serif;
-	font-size:20px;
-	font-style: italic;
-    background-size: cover;
-}
-#config{
-	font-family:"Microsoft Yahei";;
-	border: 1px solid #CCC;
-	border-radius: 20px;
-	padding: 30px 30px;
-	width: 600px;
-	position: relative;    
-	margin: 0 auto;
-}
-#configform{
 	text-align:center;
 }
 #aboutme{
@@ -38,8 +21,29 @@ body {
 	font-size:10px;
 	font-family:"Comic Sans MS", cursive;
 }
-#submit{
-	color:#999;
-	font-family:"MS Serif", "New York", serif;
+
+.menu{
+	float:left; 
+	width:200px; 
+	height:690px; 
+	border:2px 
+	solid #0000FF;
 	text-align:center;
+	margin: auto;
+}
+.content{
+	float:left; 
+	width:1000px; 
+	height:690px; 
+	border-right:2px solid #0000FF;
+	border-top:2px solid #0000FF; 
+	border-bottom:2px solid #0000FF;
+}
+.top_title{
+	font-family: "Microsoft Yahei";
+	text-align: left;
+	color: #666;
+	font-size: 20px;
+	width: 1000px;
+	margin: auto;
 }

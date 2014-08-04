@@ -78,9 +78,9 @@ class mysql_main{
 					$check=mysql_query($sql_content);
 					if($result = mysql_fetch_array($check))
 					{
-						echo"登陆成功";
+						return 1;
 					}else{
-						echo"登陆失败";
+						return 0;
 					}
 				}
 			}

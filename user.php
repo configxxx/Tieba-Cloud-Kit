@@ -1,5 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>User</title>
+<link rel="shortcut icon" href="./theme/favicon.ico">
 <link rel="stylesheet" type="text/css" href="./theme/main.css">
 <link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
 <script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>

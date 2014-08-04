@@ -1,6 +1,6 @@
 <?php
 $html_head ='<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Install</title><link rel="stylesheet" type="text/css" href="../theme/main.css">';
+<title>Install</title><link rel="stylesheet" type="text/css" href="../theme/main.css"><link rel="shortcut icon" href="../theme/favicon.ico">';
 
 $html_body ='<div id="comment"><h2>贴吧云工具箱配置向导</h2><p>Tieba Cloud  Kit Configuration Wizard</p>
 <p>&nbsp;</p></div><div id="config">';
