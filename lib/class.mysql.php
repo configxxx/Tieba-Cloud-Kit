@@ -1,6 +1,7 @@
 ﻿<?php header("Content-Type: text/html;charset=utf-8");
+include("/config/config.inc.php");
 ##Only used for tieba cloud kit!
-class mysql_server{
+class mysql_server_init{
 	function __construct($_host,$_name,$_password,$_dbname)
 	{
 		$this->host=$_host;
@@ -19,7 +20,7 @@ class mysql_server{
 		    or die("failed to create database.");
 			 if (mysql_select_db($this->dbname, $con)){
 				 mysql_query("set names utf8");
-				@mysql_query('CREATE TABLE tck_member(uid int NOT NULL primary key,username varchar(15),password varchar(200))',$con)
+				@mysql_query('CREATE TABLE tck_member(uid int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),password varchar(200))',$con)
 				or die("mysql query error3");
 			 }
 		}
@@ -30,8 +31,10 @@ class mysql_server{
 		if($con){
 			if(mysql_select_db($this->dbname)){
 				$salt=md5($admin_password);
-				@mysql_query('INSERT INTO tck_member(uid,username,password) VALUES( 1 ,"'."$admin_name".'",'.'"'."$salt".'")')
+				@mysql_query('INSERT INTO tck_member(uid,username,password) VALUES( 0 ,"'."$admin_name".'",'.'"'."$salt".'")')
 				or die("create admin data error3");	
+				@mysql_query('ALTER TABLE tck_member ORDER BY uid')
+				or die("mysqll query error 4");
 			}
 		}
 	} 
@@ -39,5 +42,31 @@ class mysql_server{
 	var	$admin_name;
 	var $admin_password;
 	var $dbname;
+}
+
+class mysql_main{
+	function __construct($_host,$_name,$_password)
+	{
+		$this->host=$_host;
+		$this->admin_name=$_name;
+		$this->admin_password=$_password;
+	}
+	function insert_member($sql_content,$username)
+	{
+		$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
+		if(!$con)
+		{
+			die("connecting error");
+		}else{
+			if(mysql_select_db(TK_TABLE, $con))
+			{
+				@mysql_query($sql_content)
+				or die("mysql query error;");
+			}
+		}
+	}
+	var $host;
+	var	$admin_name;
+	var $admin_password;
 }
 ?>

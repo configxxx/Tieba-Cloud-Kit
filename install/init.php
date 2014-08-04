@@ -12,22 +12,23 @@ $config=array('<?php header("Content-Type: text/html;charset=utf-8");'."\n",
 			  'define("TK_ROOT_NAME","'.$_GET['root_name'].'");'."\n",
 			  '?>');
 file_put_contents($configinc,$config);
-//todo:读取confiincphp然后连接
 require_once($configinc);
-$mysql=new mysql_server(TK_HOST,TK_NAME,TK_PASSWORD,TK_TABLE);
+$mysql=new mysql_server_init(TK_HOST,TK_NAME,TK_PASSWORD,TK_TABLE);
 $mysql->sql_operator();
 $mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
 ?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Install</title>
 <link rel="stylesheet" type="text/css" href="../theme/main.css">
 <div id="comment">
-	<h2>配置完成！</h2>
-    <p>You have been succeed to install it!</p>
+  <h2>配置完成！</h2>
+  <p>You have been succeed to install it!</p>
 	<p>&nbsp;</p>
 </div>
 <div id="config">
 	<p align="center">Bug请反馈到1948638989@qq.com </p>
+	<p align="center"><a href="../user.php">开始使用!</a></p>
 </div>
-<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Kit</p>
+<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 

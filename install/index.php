@@ -11,7 +11,7 @@ $html_form='<form id="configform" name ="configform" method="get" action="init.p
 <P>&nbsp;</P><P><input type="submit" name="submit" id="submit" value="确认提交配置信"></P>
 </form></div><p>&nbsp;&nbsp;</p>';
 
-$html_tail='<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Kit</p>';
+$html_tail='<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>';
 
 $html="$html_head.$html_body.$html_form.$html_tail";
 echo $html;

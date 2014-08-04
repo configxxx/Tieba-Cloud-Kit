@@ -4,5 +4,5 @@ define("TK_NAME","root");
 define("TK_PASSWORD","");
 define("TK_TABLE","tck");
 define("TK_ROOT_PASSWORD","123");
-define("TK_ROOT_NAME","admin");
+define("TK_ROOT_NAME","root");
 ?>
