@@ -4,9 +4,10 @@ if($_SESSION["s_uname"] == "")
 {
 	$print=' <p><a class="houseLink0" rel="ConcentLink" href="#house1">注册</a> |  <a href="#house1"  class="houseLink0" rel="ConcentLink">登陆</a></p>';
 }else{
-	$print='欢迎使用贴吧云工具箱，'.$_SESSION['s_uname'];
+	$print='欢迎使用贴吧云工具箱，<a href="#">'.$_SESSION['s_uname']."</a>";
 }
 ?>
+
 <head>
 	<title>贴吧工具箱</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
@@ -18,11 +19,10 @@ if($_SESSION["s_uname"] == "")
 	<script src="./theme/js/prettify.js" type="text/javascript"></script> 
 	<script src="./theme/js/jquery.ascensor.js" type="text/javascript"></script> 
 	<script src="./theme/js/myscript.js" type="text/javascript"></script>
-	<script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
 	<link rel="icon" type="./theme/image/gif" href="./theme/images/favicon.ico" />
-	<link rel="shortcut icon" href="./theme/images/favicon.ico" />
-	<link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./theme/css/connect_style.css">
 </head>
+
 <body>
 	<div id="general">
 		<div id="content">
@@ -31,43 +31,51 @@ if($_SESSION["s_uname"] == "")
 				<div class="contenu">
 					<h1><img src="./theme/images/toolbox.png"/></h1>
 					<p>百度贴吧云工具箱v1.0  - 那些云上的日子</p>
-					<p><?php echo $print;?></p>
+					<?php echo $print;?>
 				</div>
 			</div>
-		<!--Contenu2-->
 			<div>
 				<div class="contenu">
-					<h2 align="center"><img src="./theme/images/user.ico"/></h2>
+					<h2 align="center"><img src="./theme/images/tieba.png"/></h2>
 					
-					<p class="text" align="center">在使用贴吧云工具箱之前，您需要注册一个云工具箱的账号<a href="#"></a></p>
-					<pre class="prettyprint">
-					&lt;p&gt;You should regist an account to enjoy it!&lt;/p&gt;&lt;br&gt;&lt;pre&gt;It is different from baidu account.&lt;/pre&gt;&lt;br&gt;</pre>
+					<p class="text" align="center">最后一步, <a href="#"><?php echo $_SESSION['s_uname'];?> </a>请登录你的百度账号。</p>
+					<pre class="prettyprint">Enjoy</pre>
+					  <section class="container">
+					    <div class="login">
+					      <h1>Tieba Account Login</h1>
+					      <form method="post" action="index.html">
+					        <p><input type="text" name="login" value="" placeholder="用户名或者邮箱"></p>
+					        <p><input type="password" name="password" value="" placeholder="密码"></p>
+					        <p align="center" class="submit"><input type="submit" name="commit" value="登陆"></p>
+					      </form>
+					    </div>
+					  </section>
 				</div>
             </div>
-            <!--Contenu3-->
 			  <div>
+			<!--Contenu3-->
 				<div class="contenu">
 					<h2><img src="./theme/images/operationHtml.png"/></h2>
-					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>					
-					<pre class="prettyprint">
-					&lt;div id="house"&gt;
-						&lt;div&gt;&lt;!-- Etage1--&gt;
-							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
-						&lt;/div&gt;
-						&lt;div&gt;&lt;!-- Etage2--&gt;	
-							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
-						&lt;/div&gt;
-						&lt;div&gt;&lt;!-- Etage3--&gt;
-							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
-						&lt;/div&gt;	
-						&lt;div&gt;&lt;!-- Etage4--&gt;
-							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
-						&lt;/div&gt;
-						&lt;div&gt;&lt;!-- Etage5--&gt;
-							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
-						&lt;/div&gt;
-					&lt;/div&gt;
-					</pre>
+					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>
+<pre class="prettyprint">
+&lt;div id="house"&gt;
+	&lt;div&gt;&lt;!-- Etage1--&gt;
+		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
+	&lt;/div&gt;
+	&lt;div&gt;&lt;!-- Etage2--&gt;	
+		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
+	&lt;/div&gt;
+	&lt;div&gt;&lt;!-- Etage3--&gt;
+		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
+	&lt;/div&gt;	
+	&lt;div&gt;&lt;!-- Etage4--&gt;
+		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
+	&lt;/div&gt;
+	&lt;div&gt;&lt;!-- Etage5--&gt;
+		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
 
 				</div>	
 			</div>
@@ -210,5 +218,5 @@ if($_SESSION["s_uname"] == "")
 </div>
 <script type="text/javascript">
 var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-    </script>
+</script>
 </body>

@@ -33,8 +33,7 @@
 					<p class="text" align="center">在使用贴吧云工具箱之前，您需要注册一个云工具箱的账号<a href="#"></a></p>
 
 
-                <pre class="prettyprint">
-                &lt;p&gt;You should regist an account to enjoy it!&lt;/p&gt;&lt;br&gt;&lt;pre&gt;It is different from baidu account.&lt;/pre&gt;&lt;br&gt;</pre>
+                <pre  align="center" class="prettyprint">&lt;p&gt;请注意这是贴吧云工具箱账号而不是百度账号，请勿混淆！&lt;/p&gt;</pre>
                 </div>
 				<div id="TabbedPanels1" class="TabbedPanels">
 				  <ul class="TabbedPanelsTabGroup">
