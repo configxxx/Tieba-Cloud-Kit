@@ -1,8 +1,15 @@
+<?php
+session_start();
+if($_SESSION['s_uname'] == "")
+{
+	header('Location:user.php');
+}
+?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Install</title><link rel="stylesheet" type="text/css" href="./theme/extra.css">
 <link rel="shortcut icon" href="./theme/favicon.ico">
 <div class="top_title">
-<h2>贴吧云工具箱</h2>
+<h2>贴吧云工具箱</h2><p><?php echo $_SESSION["s_uname"];echo $_SESSION['s_upasswd']?></p><h2>欢迎登陆</h2>
 </div>
 <div class="menu">
 	<p>用户</p>
@@ -13,5 +20,4 @@
 	<img src="./theme/qiandao.ico"><a href="">贴吧云签到</a><br>
 </div>
 <div class="content">
-	
 </div>
