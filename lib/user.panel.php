@@ -9,10 +9,9 @@ if(isset($_POST['submit_reg']))
 		$reg_mysql = new mysql_main(TK_HOST,TK_NAME,TK_PASSWORD);
 		$user_info = array('user_name' =>$_POST['username'], 'user_password'=>md5($_POST['userpassword']));
 		$reg_mysql-> connect_member('INSERT INTO tck_member(username,password) VALUES ("'.$user_info["user_name"].'","'.$user_info["user_password"].'")',0);	
-		//todu:go to login php
+		echo "注册成功";
 	}else{
 		echo"用户名或密码为空！";
-		header("Location:../user.php");
 		exit();
 	}
 }elseif(isset($_POST['submit_log'])){
@@ -24,7 +23,7 @@ if(isset($_POST['submit_reg']))
 		session_start();
 		$_SESSION["s_uname"] = $user_info['user_name_log'];
 		$_SESSION["s_upasswd"] = $user_info['user_password_log'];
-		setcookie(session_name(), session_id(), time() + 7*24*3600, “/”);
+		setcookie(session_name(), session_id(), time() + 7*24*3600, "/");
 		header("Location:../index.php");
 	}else{
 		echo"登陆失败，请检查你的用户名或者密码是否正确!";
