@@ -34,44 +34,40 @@ if($_SESSION["s_uname"] == "")
 					<p><?php echo $print;?></p>
 				</div>
 			</div>
+		<!--Contenu2-->
 			<div>
 				<div class="contenu">
 					<h2 align="center"><img src="./theme/images/user.ico"/></h2>
 					
 					<p class="text" align="center">在使用贴吧云工具箱之前，您需要注册一个云工具箱的账号<a href="#"></a></p>
-					
-					
-<pre class="prettyprint">
-&lt;p&gt;You should regist an account to enjoy it!&lt;/p&gt;&lt;br&gt;&lt;pre&gt;It is different from baidu account.&lt;/pre&gt;&lt;br&gt;</pre>
-</div>
-		
-                    </div>
+					<pre class="prettyprint">
+					&lt;p&gt;You should regist an account to enjoy it!&lt;/p&gt;&lt;br&gt;&lt;pre&gt;It is different from baidu account.&lt;/pre&gt;&lt;br&gt;</pre>
+				</div>
+            </div>
+            <!--Contenu3-->
 			  <div>
-			<!--Contenu3-->
 				<div class="contenu">
 					<h2><img src="./theme/images/operationHtml.png"/></h2>
-					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>
-					
-					
-<pre class="prettyprint">
-&lt;div id="house"&gt;
-	&lt;div&gt;&lt;!-- Etage1--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage2--&gt;	
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage3--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
-	&lt;/div&gt;	
-	&lt;div&gt;&lt;!-- Etage4--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage5--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-</pre>
+					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>					
+					<pre class="prettyprint">
+					&lt;div id="house"&gt;
+						&lt;div&gt;&lt;!-- Etage1--&gt;
+							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
+						&lt;/div&gt;
+						&lt;div&gt;&lt;!-- Etage2--&gt;	
+							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
+						&lt;/div&gt;
+						&lt;div&gt;&lt;!-- Etage3--&gt;
+							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
+						&lt;/div&gt;	
+						&lt;div&gt;&lt;!-- Etage4--&gt;
+							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
+						&lt;/div&gt;
+						&lt;div&gt;&lt;!-- Etage5--&gt;
+							&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					</pre>
 
 				</div>	
 			</div>
