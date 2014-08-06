@@ -20,7 +20,7 @@ $mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Install</title>
-<link rel="stylesheet" type="text/css" href="../theme/main.css">
+<link rel="stylesheet" type="text/css" href="../UI/main.css">
 <div id="comment">
   <h2>配置完成！</h2>
   <p>You have been succeed to install it!</p>
@@ -30,5 +30,5 @@ $mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
 	<p align="center">Bug请反馈到1948638989@qq.com </p>
 	<p align="center"><a href="../user.php">开始使用!</a></p>
 </div>
-<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
+<p id="aboutme" align="center">Copyleft <img src="../UI/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 

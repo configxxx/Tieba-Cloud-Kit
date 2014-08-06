@@ -1,17 +1,17 @@
 <head>
 	<title>用户注册</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-	<link href="./theme/css/reset.css" rel="stylesheet" type="text/css" />
-	<link href="./theme/css/prettify.css" rel="stylesheet" type="text/css" />
-	<link href="./theme/css/styles.css" rel="stylesheet" type="text/css" /> 
-	<script src="./theme/js/jquery.min.js" type="text/javascript"></script> 
-	<script src="./theme/js/jquery.scrollTo.js" type="text/javascript"></script> 
-	<script src="./theme/js/prettify.js" type="text/javascript"></script> 
-	<script src="./theme/js/jquery.ascensor.js" type="text/javascript"></script> 
-	<script src="./theme/js/myscript.js" type="text/javascript"></script>
+	<link href="./UI/css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="./UI/css/prettify.css" rel="stylesheet" type="text/css" />
+	<link href="./UI/css/styles.css" rel="stylesheet" type="text/css" /> 
+	<script src="./UI/js/jquery.min.js" type="text/javascript"></script> 
+	<script src="./UI/js/jquery.scrollTo.js" type="text/javascript"></script> 
+	<script src="./UI/js/prettify.js" type="text/javascript"></script> 
+	<script src="./UI/js/jquery.ascensor.js" type="text/javascript"></script> 
+	<script src="./UI/js/myscript.js" type="text/javascript"></script>
 	<script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
-	<link rel="icon" type="./theme/image/gif" href="./theme/images/favicon.ico" />
-	<link rel="shortcut icon" href="./theme/images/favicon.ico" />
+	<link rel="icon" type="./UI/image/gif" href="./UI/images/favicon.ico" />
+	<link rel="shortcut icon" href="./UI/images/favicon.ico" />
 	<link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -20,7 +20,7 @@
 		<!--Contenu1-->
 			<div>
 				<div class="contenu">
-					<h1><img src="./theme/images/toolbox.png"/></h1>
+					<h1><img src="./UI/images/toolbox.png"/></h1>
 					<p>百度贴吧云工具箱v1.0  - 那些云上的日子</p>
 					<p><a class="houseLink0" rel="ConcentLink" href="#house1">注册</a>  |  <a href="#house1"  class="houseLink0" rel="ConcentLink">登陆</a></p>
 				</div>
@@ -28,7 +28,7 @@
             <!--Contenu2-->
 			<div>
 				<div class="contenu">
-					<h2 align="center"><img src="./theme/images/user.ico"/></h2>
+					<h2 align="center"><img src="./UI/images/user.ico"/></h2>
 
 					<p class="text" align="center">在使用贴吧云工具箱之前，您需要注册一个云工具箱的账号<a href="#"></a></p>
 
@@ -66,14 +66,14 @@
 			<!--Contenu3-->
             <div>
 				<div class="contenu">
-					<h2><img src="./theme/images/end.png"/></h2>
+					<h2><img src="./UI/images/end.png"/></h2>
 					<p class="text">贴吧云工具箱账号注册完成了，点击这里开始云游~</p>
                     <pre class="prettyprint">
                     &lt;div&gt;有问题请联系管理员.&lt;/div&gt;
                     </pre>
 				</div>	
 			</div>
-<script type="text/javascript">
-var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-    </script>
+			<script type="text/javascript">
+			var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+			</script>
 </body>

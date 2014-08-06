@@ -1,26 +1,36 @@
-<?php
+<?php 
 session_start();
+@require_once('./lib/config/config.inc.php');
+@require_once('./lib/class.mysql.php');
 if($_SESSION["s_uname"] == "")
 {
 	$print=' <p><a class="houseLink0" rel="ConcentLink" href="#house1">注册</a> |  <a href="#house1"  class="houseLink0" rel="ConcentLink">登陆</a></p>';
 }else{
-	$print='欢迎使用贴吧云工具箱，<a href="#">'.$_SESSION['s_uname']."</a>";
+	if($_SESSION["s_uname"] ==TK_ROOT_NAME){
+		$print='欢迎使用贴吧云工具箱,超级管理员<a href="#">'.$_SESSION['s_uname']."</a>".",您拥有最高权限";
+	}else{
+		$print='你好，'.'<a href="#">'.$_SESSION['s_uname']."</a>".',欢迎使用贴吧云工具箱';
+	}
+}
+function get_mysql_version(){
+	$con = mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+	return mysql_get_server_info($con);
 }
 ?>
 
 <head>
 	<title>贴吧工具箱</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-	<link href="./theme/css/reset.css" rel="stylesheet" type="text/css" />
-	<link href="./theme/css/prettify.css" rel="stylesheet" type="text/css" />
-	<link href="./theme/css/styles.css" rel="stylesheet" type="text/css" /> 
-	<script src="./theme/js/jquery.min.js" type="text/javascript"></script> 
-	<script src="./theme/js/jquery.scrollTo.js" type="text/javascript"></script> 
-	<script src="./theme/js/prettify.js" type="text/javascript"></script> 
-	<script src="./theme/js/jquery.ascensor.js" type="text/javascript"></script> 
-	<script src="./theme/js/myscript.js" type="text/javascript"></script>
-	<link rel="icon" type="./theme/image/gif" href="./theme/images/favicon.ico" />
-	<link rel="stylesheet" href="./theme/css/connect_style.css">
+	<link href="./UI/css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="./UI/css/prettify.css" rel="stylesheet" type="text/css" />
+	<link href="./UI/css/styles.css" rel="stylesheet" type="text/css" /> 
+	<script src="./UI/js/jquery.min.js" type="text/javascript"></script> 
+	<script src="./UI/js/jquery.scrollTo.js" type="text/javascript"></script> 
+	<script src="./UI/js/prettify.js" type="text/javascript"></script> 
+	<script src="./UI/js/jquery.ascensor.js" type="text/javascript"></script> 
+	<script src="./UI/js/myscript.js" type="text/javascript"></script>
+	<link rel="icon" type="./UI/image/gif" href="./UI/images/favicon.ico" />
+	<link rel="stylesheet" href="./UI/css/connect_style.css">
 </head>
 
 <body>
@@ -29,63 +39,61 @@ if($_SESSION["s_uname"] == "")
 		<!--Contenu1-->
 			<div>
 				<div class="contenu">
-					<h1><img src="./theme/images/toolbox.png"/></h1>
+					<h1><img src="./UI/images/toolbox.png"/></h1>
 					<p>百度贴吧云工具箱v1.0  - 那些云上的日子</p>
 					<?php echo $print;?>
 					<P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P>
-					<p id="aboutme" align="center">Copyleft <img src="./theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
+					<p id="aboutme" align="center">Copyleft <img src="./UI/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 				</div>
 			</div>
 			<div>
 				<div class="contenu">
-					<h2 align="center"><img src="./theme/images/tieba.png"/></h2>
-					<p class="text" align="center">最后一步, <a href="#"><?php echo $_SESSION['s_uname'];?> </a>请登录你的百度账号。</p>
-					<pre class="prettyprint">Enjoy</pre>
+					<h2 align="center"><img src="./UI/images/tieba.png"/></h2>
+					<p class="text" align="center">最后一步, <a href="#"><?php echo $_SESSION['s_uname'];?></a>请复制你的百度账号Cookie。</p>
+					<pre class="prettyprint">如果你不知道如何获取Cookie，请点击最后一个阶梯查看教程.Enjoy!</pre>
 					  <section class="container">
 					    <div class="login">
-					      <h1>Tieba Account Login</h1>
-					      <form method="post" action="./lib/baidu_login.php">
-					        <p><input type="text" name="baidu_login" value="" placeholder="用户名或者邮箱"></p>
-					        <p><input type="password" name="baidu_password" value="" placeholder="密码"></p>
-					        <p align="center" class="submit"><input type="submit" name="baidu_commit" value="登陆"></p>
+					      <h1>Tieba Account Cookie Bind</h1>
+					      <form method="post" action="./lib/core/class.baiduopt.php">
+					        <p><input type="text" name="cookie" value="" placeholder="粘贴你的百度Cookie"></p>
+					        <p align="center" class="submit"><input type="submit" name="baidu_commit" value="确认"></p>
 					      </form>
 					    </div>
 					  </section>
 				</div>
             </div>
-			  <div>
+			 <div>
 			<!--Contenu3-->
 				<div class="contenu">
-					<h2><img src="./theme/images/operationHtml.png"/></h2>
+					<h2><img src="./UI/images/operationHtml.png"/></h2>
 					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>
-<pre class="prettyprint">
-&lt;div id="house"&gt;
-	&lt;div&gt;&lt;!-- Etage1--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage2--&gt;	
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage3--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
-	&lt;/div&gt;	
-	&lt;div&gt;&lt;!-- Etage4--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
-	&lt;/div&gt;
-	&lt;div&gt;&lt;!-- Etage5--&gt;
-		&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-</pre>
+						<pre class="prettyprint">
+						&lt;div id="house"&gt;
+							&lt;div&gt;&lt;!-- Etage1--&gt;
+								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
+							&lt;/div&gt;
+							&lt;div&gt;&lt;!-- Etage2--&gt;	
+								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
+							&lt;/div&gt;
+							&lt;div&gt;&lt;!-- Etage3--&gt;
+								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
+							&lt;/div&gt;	
+							&lt;div&gt;&lt;!-- Etage4--&gt;
+								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
+							&lt;/div&gt;
+							&lt;div&gt;&lt;!-- Etage5--&gt;
+								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+						</pre>
 
 				</div>	
 			</div>
-			<div>
-			
-			
+
+			<div>		
 			<!--Contenu4-->
 				<div class="contenu">
-					<h2><img src="./theme/images/operationJs.png"/></h2>
+					<h2><img src="./UI/images/operationJs.png"/></h2>
 					<p class="text">then in your script file, simply write:</p> <br/>
 					<pre class="prettyprint">$('#house').ascensor();</pre>
 				</div>
@@ -95,7 +103,7 @@ if($_SESSION["s_uname"] == "")
 			<!--Contenu5-->
 			<div>
 				<div class="contenu">
-					<h2><img src="./theme/images/operationJs2.png"/></h2>
+					<h2><img src="./UI/images/operationJs2.png"/></h2>
 					<p class="text">There are several settings for this plugin.</p><br/>
 					<pre class="prettyprint">$('#house').ascensor({
 					
@@ -118,7 +126,7 @@ if($_SESSION["s_uname"] == "")
 			<!--Contenu6-->
 			<div>
 				<div class="contenu">
-					<h2><img src="./theme/images/operationJs3.png"/></h2>
+					<h2><img src="./UI/images/operationJs3.png"/></h2>
 						<p class="text">There are also settings that allow the creation of navigation, disabling certain keys or even send the code to add elements.</p><br/>
 <pre class="prettyprint">$('#content').ascensor({
 								
@@ -147,7 +155,7 @@ if($_SESSION["s_uname"] == "")
 			<!--Contenu7-->
 			<div>
 				<div class="contenu">
-					<h2><img src="./theme/images/operationJs4.png"/></h2>
+					<h2><img src="./UI/images/operationJs4.png"/></h2>
 					<p class="text">There are more complicated settings for this plugin. They can create a system map that defines the scale (AscensorMap) in which we will place each element by a series of coordinates (ContentCoord).</p><br/>
 <pre class="prettyprint">$('#content').ascensor({
 								
@@ -166,7 +174,7 @@ if($_SESSION["s_uname"] == "")
 			<!--Contenu7-->
 			<div>
 				<div class="contenu">
-					<h2><img src="./theme/images/operationCss.png"/></h2>
+					<h2><img src="./UI/images/operationCss.png"/></h2>
 					<p class="text">Then, Hide scrollbar in css</p><br/>
 					<pre class="prettyprint">body{overflow: hidden;}</pre>
 				</div>
@@ -175,8 +183,8 @@ if($_SESSION["s_uname"] == "")
 			
 			<div>
 				<div class="contenu">
-					<h2><img src="./theme/images/operationTest.png"/></h2>
-					<p class="text">This does not prevent their occurrence when there is too much content</p><br/>
+					<h2><img src="./UI/images/tut.png"/></h2>
+					<p class="text">如果你不知道如何获取百度Cookie不妨阅读下面教程。</p><br/>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis, ante vitae dapibus venenatis, velit metus imperdiet magna, sit amet iaculis nunc ligula sed lacus. Vivamus elit justo, mattis id ultricies a, lacinia id purus. Nunc nec erat turpis, non egestas purus. Duis non lectus venenatis nunc blandit mattis vitae eget risus. Nullam eget consectetur diam. Etiam nulla tortor, dictum ullamcorper tincidunt a, laoreet quis urna. Phasellus nunc sapien, lobortis sed rutrum eu, ullamcorper sed ante. Donec nec vulputate nulla. Curabitur magna ligula, pharetra eu adipiscing cursus, posuere quis tortor. Integer posuere porta velit sed mattis. Duis sed urna orci, ac rutrum ligula. Duis et lacinia eros. Quisque erat quam, fringilla at lobortis non, pellentesque et ligula. Ut volutpat metus justo, eu interdum urna.
 					
 					Pellentesque feugiat enim in dolor mollis et gravida ligula ultrices. Quisque id enim ante, quis facilisis felis. Pellentesque condimentum lorem pellentesque libero mollis suscipit. Nulla facilisi. Suspendisse potenti. Aenean faucibus risus quis mi condimentum scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis cursus nibh id neque pharetra id vulputate dolor consequat. Duis ac nibh massa, ac ullamcorper nibh. Aenean ut urna ut turpis suscipit posuere ut tempus lacus. Nam sed metus nunc, at tempus nibh. Duis eu erat est. Praesent diam risus, cursus nec interdum vel, pharetra et augue. In nec leo nec nunc tincidunt interdum. Vivamus erat turpis, dapibus vel tempus id, adipiscing rhoncus eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc eros leo, imperdiet in iaculis nec, semper sed augue.
@@ -206,18 +214,25 @@ if($_SESSION["s_uname"] == "")
 					Nam scelerisque, orci vel porta varius, tortor magna blandit neque, id ullamcorper nibh leo sit amet libero. Cras fermentum pellentesque tincidunt. Suspendisse dictum tristique nisi in ultrices. Duis tempus ipsum vitae lorem faucibus lobortis. Pellentesque hendrerit, lectus ut vulputate cursus, nibh eros auctor diam, sed auctor magna lectus quis lorem. Nam sapien augue, ullamcorper quis imperdiet non, varius at purus. Nunc rhoncus arcu nec libero dapibus bibendum. Nunc cursus dui at quam congue ac eleifend tortor aliquet. Proin vel feugiat nulla. Mauris pharetra, odio in vestibulum dignissim, velit quam egestas metus, vel commodo neque quam non magna. Aliquam ac dui tellus, a suscipit turpis. Donec eget nibh vitae massa pulvinar commodo. Vivamus quis dolor eget leo ultrices posuere in at diam. Ut eget odio nisi, et condimentum nisi. Suspendisse </p>
 				</div>
 			</div>
-			
-			
-			<!--Contenu8-->
-			<div>
-				<div class="contenu">
-					<h2><img src="./theme/images/end.png"/></h2>
-					<p class="text"> 如果您对贴吧云工具箱有任何意见或者建议，请联系<a href="mailto:1948638989@qq.com">1948638989@qq.com</a></p>
-				</div>
-			</div>
+
+			<?php 
+			if($_SESSION['s_uname']==TK_ROOT_NAME)
+			{
+				$con = mysql_connect("localhost", "hello", "321");
+				echo "MySQL server info: " . mysql_get_server_info($con);
+				$ip=$_SERVER["REMOTE_ADDR"];
+				$version=get_mysql_version();
+				$div_head='<div><div class="contenu">';
+				$div_tail= '</div></div>';
+				$div_body="
+				<h2><img src='./UI/images/admin.ico'/></h2>
+				<pre class='prettyprint'>Admin Name: {$_SESSION["s_uname"]}	Ip    Address: {$ip}	MySQL Version: {$version}
+				</pre>
+				";
+				echo $div_head.$div_body.$div_tail;			
+			}
+			?>
+		</div>
 		</div>
 </div>
-<script type="text/javascript">
-var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-</script>
 </body>

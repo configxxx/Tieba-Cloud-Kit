@@ -1,6 +1,6 @@
 <?php
 $html_head ='<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Install</title><link rel="stylesheet" type="text/css" href="../theme/main.css"><link rel="shortcut icon" href="../theme/favicon.ico">';
+<title>Install</title><link rel="stylesheet" type="text/css" href="../UI/main.css"><link rel="shortcut icon" href="../UI/favicon.ico">';
 
 $html_body ='<div id="comment"><h2>贴吧云工具箱配置向导</h2><p>Tieba Cloud  Kit Configuration Wizard</p>
 <p>&nbsp;</p></div><div id="config">';
@@ -11,7 +11,7 @@ $html_form='<form id="configform" name ="configform" method="get" action="init.p
 <P>&nbsp;</P><P><input type="submit" name="submit" id="submit" value="确认提交配置信"></P>
 </form></div><p>&nbsp;&nbsp;</p>';
 
-$html_tail='<p id="aboutme" align="center">Copyleft <img src="../theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>';
+$html_tail='<p id="aboutme" align="center">Copyleft <img src="../UI/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>';
 
 $html="$html_head.$html_body.$html_form.$html_tail";
 echo $html;

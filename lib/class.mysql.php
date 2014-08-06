@@ -1,5 +1,6 @@
 ﻿<?php header("Content-Type: text/html;charset=utf-8");
 include("/config/config.inc.php");
+include("func.feedback.php");
 ##Only used for tieba cloud kit!
 class mysql_server_init{
 	function __construct($_host,$_name,$_password,$_dbname)
@@ -51,19 +52,25 @@ class mysql_main{
 		$this->admin_name=$_name;
 		$this->admin_password=$_password;
 	}
-	function connect_member($sql_content,$flag)
+	function connect_member($sql_content,$reg_name,$flag)
 	{
 		if($flag==0)//log or regist
 		{
 			$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
 			if(!$con)
 			{
-				die("connecting error");
+				print_feedback(2);
 			}else{
 				if(mysql_select_db(TK_TABLE, $con))
 				{
-					@mysql_query($sql_content)
-					or die("mysql query error;");
+					$check=mysql_query('SELECT  * FROM tck_member WHERE username in("'.$reg_name.'")');
+					if(mysql_num_rows($check))
+					{
+						print_feedback(0);
+					}else{
+						@mysql_query($sql_content)
+						or print_feedback(1);
+					}
 				}
 			}
 		}
@@ -71,7 +78,7 @@ class mysql_main{
 			$con=mysql_connect($this->host,$this->admin_name,$this->admin_password);
 			if(!$con)
 			{
-				die("connecting error");
+				print_feedback(3);
 			}else{
 				if(mysql_select_db(TK_TABLE, $con))
 				{
