@@ -32,21 +32,22 @@ if($_SESSION["s_uname"] == "")
 					<h1><img src="./theme/images/toolbox.png"/></h1>
 					<p>百度贴吧云工具箱v1.0  - 那些云上的日子</p>
 					<?php echo $print;?>
+					<P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P>
+					<p id="aboutme" align="center">Copyleft <img src="./theme/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 				</div>
 			</div>
 			<div>
 				<div class="contenu">
 					<h2 align="center"><img src="./theme/images/tieba.png"/></h2>
-					
 					<p class="text" align="center">最后一步, <a href="#"><?php echo $_SESSION['s_uname'];?> </a>请登录你的百度账号。</p>
 					<pre class="prettyprint">Enjoy</pre>
 					  <section class="container">
 					    <div class="login">
 					      <h1>Tieba Account Login</h1>
-					      <form method="post" action="index.html">
-					        <p><input type="text" name="login" value="" placeholder="用户名或者邮箱"></p>
-					        <p><input type="password" name="password" value="" placeholder="密码"></p>
-					        <p align="center" class="submit"><input type="submit" name="commit" value="登陆"></p>
+					      <form method="post" action="./lib/baidu_login.php">
+					        <p><input type="text" name="baidu_login" value="" placeholder="用户名或者邮箱"></p>
+					        <p><input type="password" name="baidu_password" value="" placeholder="密码"></p>
+					        <p align="center" class="submit"><input type="submit" name="baidu_commit" value="登陆"></p>
 					      </form>
 					    </div>
 					  </section>
@@ -211,7 +212,7 @@ if($_SESSION["s_uname"] == "")
 			<div>
 				<div class="contenu">
 					<h2><img src="./theme/images/end.png"/></h2>
-					<p class="text">Normally, everything should work. The plugin is still in development. if you use this plugin, talk about it or have any suggestions, bugs, please let me know at <a href="mailto:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#107;&#105;&#114;&#107;&#097;&#115;&#046;&#099;&#104;">this e-mail</a></p>
+					<p class="text"> 如果您对贴吧云工具箱有任何意见或者建议，请联系<a href="mailto:1948638989@qq.com">1948638989@qq.com</a></p>
 				</div>
 			</div>
 		</div>
