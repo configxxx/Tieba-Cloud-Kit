@@ -28,25 +28,38 @@ function print_feedback($errid)
 	{
 		switch ($errid){
 			case 0:
-				$print="用户已经被注册！";
+				$print="你想要的账号已经被另一个坏蛋注册了！";
 				echo $html1.$state_error.$html2.$print.$html3;
 				exit();
 				break;
 			case 1:
-				$print="注册时数据库查询出错，请联系站长解决!";
+				$print="怎么搞得，注册时数据库查询出错";
 				echo $html1.$state_error.$html2.$print.$html3;
 				exit();
 			case 2:
-				$print ="注册时连接数据库失败，请重新尝试注册或者联系管理员.";
+				$print ="注册时连接数据库失败,RPWT,找站长解决吧";
 				echo $html1.$state_error.$html2.$print.$html3;
 				exit();
 			case 3:
-				$print ="登陆时连接数据库失败，请重新尝试登陆或者联系管理员.";
+				$print ="[+]登陆时连接数据库失败,RPWT,找站长解决吧";
 				echo $html1.$state_error.$html2.$print.$html3;
 				exit();
-			default:
-				die("Undefine Error ID");
-				break;
+			case 4:
+				$print ="太粗心了！你注册的用户名或密码为空，赶快填上！";
+				echo $html1.$state_error.$html2.$print.$html3;
+				exit();
+			case 5:
+				$print="哎呀，登陆失败了，请检查你的用户名或者密码是否正确!";
+				echo $html1.$state_error.$html2.$print.$html3;
+				exit();
+		}
+	}else if($errid>5 && $errid <=10)
+	{
+		switch ($errid) {
+			case 6:
+				$print="能看到这个页面还真不容易啊，未定义操作";
+				echo $html1.$state_error.$html2.$print.$html3;
+				exit();
 		}
 	}
 }

@@ -51,6 +51,5 @@ function _client_sign($tieba){
         }
     }
 }
-
 _client_sign("chrome");
 ?>

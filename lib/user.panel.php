@@ -1,6 +1,7 @@
 <?php header("Content-Type: text/html;charset=utf-8");
 require_once("class.mysql.php");
 require_once("./config/config.inc.php");
+require_once("func.feedback.php");
 
 if(isset($_POST['submit_reg']))
 {
@@ -10,8 +11,7 @@ if(isset($_POST['submit_reg']))
 		$user_info = array('user_name' =>$_POST['username'], 'user_password'=>md5($_POST['userpassword']));
 		$reg_mysql-> connect_member('INSERT INTO tck_member(username,password) VALUES ("'.$user_info["user_name"].'","'.$user_info["user_password"].'")',$user_info['user_name'],0);	
 	}else{
-		echo"用户名或密码为空！";
-		exit();
+		print_feedback(4);
 	}
 }elseif(isset($_POST['submit_log'])){
 	$log_mysql = new mysql_main(TK_HOST,TK_NAME,TK_PASSWORD);
@@ -25,10 +25,10 @@ if(isset($_POST['submit_reg']))
 		setcookie(session_name(), session_id(), time() + 365*24*3600, "/");
 		header("Location:../index.php");
 	}else{
-		echo"登陆失败，请检查你的用户名或者密码是否正确!";
+		print_feedback(5);
 	}
 
 }else{
-	exit("Undefine");
+	print_feedback(6);
 }
 ?>
