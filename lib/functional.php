@@ -1,4 +1,5 @@
-<?php
+<?php header("Content-Type: text/html;charset=utf-8");
+
 class json_code{
 	public static function icon_to_utf8($s) {
 		if(is_array($s)) 

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 @require_once('./lib/class.mysql.php');
+@require_once('./lib/core/indexui.php');
 if(@$_SESSION["s_uname"] == "")
 {
 	header('Location:user.php');
@@ -11,26 +12,12 @@ if(@$_SESSION["s_uname"] == "")
 		$print='你好，'.'<a href="#">'.$_SESSION['s_uname']."</a>".',欢迎使用贴吧云工具箱';
 	}
 }
+$html_page_2=is_bind();
+
 function get_mysql_version(){
 	$con = mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
 	return mysql_get_server_info($con);
 }
-/*
-function is_bind()
-{
-	$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
-	if(!$con)
-	{
-		print_feedback(2);
-	}else{
-	if(mysql_select_db(TK_TABLE, $con))
-	{
-		$check=mysql_query('SELECT  * FROM tck_member WHERE username in("'.$_SESSION['s_uname'].'")');
-		if(mysql_num_rows($check)){
-		}else{
-		}
-	}
-}*/
 ?>
 
 <head>
@@ -63,18 +50,7 @@ function is_bind()
 			</div>
 			<div>
 				<div class="contenu">
-					<h2 align="center"><img src="./UI/images/tieba.png"/></h2>
-					<p class="text" align="center">最后一步, <a href="#"><?php echo $_SESSION['s_uname'];?></a>请复制你的百度账号Cookie。</p>
-					<pre class="prettyprint">如果你不知道如何获取Cookie，请点击最后一个阶梯查看教程.你也可以通过修改百度账号Password来使Cookie失效.Enjoy!</pre>
-					  <section class="container">
-					    <div class="login">
-					      <h1>Tieba Account Cookie Bind</h1>
-					      <form method="post" action="./lib/user.bind.php">
-					        <p><input type="text" name="cookie" value="" placeholder="粘贴你的百度Cookie"></p>
-					        <p align="center" class="submit"><input type="submit" name="baidu_commit" value="确认"></p>
-					      </form>
-					    </div>
-					  </section>
+					<?php echo $html_page_2;?>
 				</div>
             </div>
 			 <div>
