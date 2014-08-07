@@ -22,4 +22,12 @@ class json_code{
 	    }
 	}
 }
+
+function html_analysis($html_sources)
+{
+	foreach ($html_sources as $value) {
+		preg_match('/<tr><td>.*?<ahref="\/f\?kw=.*?"title="(.*?)"/', $html_sources,$matches);
+	}
+	return $matches;
+}
 ?>

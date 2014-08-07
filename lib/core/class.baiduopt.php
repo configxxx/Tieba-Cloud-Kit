@@ -42,5 +42,31 @@ class baiduopt
 		curl_close($ch);
 		return @json_decode($result);
 	}
+	public static function get_liked_tieba($cookie){
+		$liked_list = array();
+		$pn_count=1;
+		while (true) {
+			$ch = curl_init('http://tieba.baidu.com/f/like/mylike?&pn='.$pn_count);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS,'');
+			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+			$result = curl_exec($ch);
+			$res=mb_convert_encoding($result,"utf-8","gbk");
+			curl_close($ch);
+			if(strpos($res,"会员"))
+			{
+				array_push($liked_list,$res);
+				$pn_count++;
+			}else{
+				return $liked_list;
+			}
+		}
+	}
 }
+					$bduss="BDUSS=hmZElvcjNtMEhScXVyd1RKOEZweUljb2VzMmY4MkZMNXJkRjdjLVpCT094Z2xVQVFBQUFBJCQAAAAAAAAAAAEAAAB3raIhz8C1wdCht8m7-gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI454lOOOeJTV3";
+					$t = baiduopt::get_liked_tieba($bduss);
+					foreach ($t as $value) echo $value;
 ?>

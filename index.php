@@ -1,6 +1,7 @@
 <?php 
 session_start();
 @require_once('./lib/class.mysql.php');
+@require_once('./lib/core/class.baiduopt.php');
 @require_once('./lib/core/indexui.php');
 if(@$_SESSION["s_uname"] == "")
 {
@@ -56,27 +57,12 @@ function get_mysql_version(){
 			 <div>
 			<!--Contenu3-->
 				<div class="contenu">
-					<h2><img src="./UI/images/operationHtml.png"/></h2>
-					<p class="text">You need to think like an architect for the future. You must build a house with 5 floors. For this he must do so:</p>
-						<pre class="prettyprint">
-						&lt;div id="house"&gt;
-							&lt;div&gt;&lt;!-- Etage1--&gt;
-								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 1--&gt;
-							&lt;/div&gt;
-							&lt;div&gt;&lt;!-- Etage2--&gt;	
-								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 2--&gt;
-							&lt;/div&gt;
-							&lt;div&gt;&lt;!-- Etage3--&gt;
-								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 3--&gt;
-							&lt;/div&gt;	
-							&lt;div&gt;&lt;!-- Etage4--&gt;
-								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 4--&gt;
-							&lt;/div&gt;
-							&lt;div&gt;&lt;!-- Etage5--&gt;
-								&lt;div id="ContentName"&gt;&lt;/div&gt;&lt;!-- Content of the floor 5--&gt;
-							&lt;/div&gt;
-						&lt;/div&gt;
-						</pre>
+					<h2><img src="./UI/images/sign_state.png"/></h2>
+					<pre class="prettyprint">Tieba Count:
+					</pre>
+						<p class="text">签到状况页面</p><br/>
+					<p>				
+					</p>
 
 				</div>	
 			</div>
@@ -177,7 +163,14 @@ function get_mysql_version(){
 					<h2><img src="./UI/images/tut.png"/></h2>
 					<p class="text">如果你不知道如何获取百度Cookie不妨阅读下面教程。</p><br/>
 					<p>1.Chrome浏览器/遨游3/360极速浏览器/..</p>
-					<p>·</p>
+					<p>·第一步, 进入http://tieba.baidu.com/然后登陆你的账号，点击浏览器地址栏类似文件夹的图标，在弹出的方框中选择"显示Cookies和网站数据"</p>
+					<p>·第一步, 在弹出的的方框中依次选择baidu.com->Cookie->BDUSS,然后你就可以下面的内容上查看你的Cookie，注意，他不是完全的，只显示了一部分，所以需要点击内容那个区域然后ctrl+a选中再按下ctrl+c复制</p>
+					<p>·第三步, 最后在你的cookie前面加上BDUSS=,即BDUSS=XXXXX,最后把这些全部复制到账号绑定页面按下确定即可完成绑定</p>
+					<p>&nbsp;</p>
+					<p>在下一个版本中可能会增加自动绑定，敬请期待~</p>
+					 <p>图文教程：(如果无法查看请随意调整浏览器大小，然后即可查看)</p>	
+					<h2><img src="./UI/tut/step1.png"/></h2>
+					<h2><img src="./UI/tut/step2.png"/></h2>
 					</div>
 			</div>
 

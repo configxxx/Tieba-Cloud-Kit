@@ -26,7 +26,7 @@ function is_bind()
 						    <div class="login">
 						      <h1>Your Baidu Account:</h1>
 						      <form method="" action="">
-						        <p style="color:black;">百度账号:</p>
+						        <p style="color:black;">百度账号:'.$count[4].'</p>
 						        <p style="color:black;">邮    箱:'.$count[5].'</p>
 						        <p style="color:black;">手    机:'.$count[6].'</p>
 						      </form>
