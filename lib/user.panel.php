@@ -10,6 +10,8 @@ if(isset($_POST['submit_reg']))
 		$reg_mysql = new mysql_main(TK_HOST,TK_NAME,TK_PASSWORD);
 		$user_info = array('user_name' =>$_POST['username'], 'user_password'=>md5($_POST['userpassword']));
 		$reg_mysql-> connect_member('INSERT INTO tck_member(username,password) VALUES ("'.$user_info["user_name"].'","'.$user_info["user_password"].'")',$user_info['user_name'],0);	
+		$reg_mysql-> connect_member('INSERT INTO tck_user_bind(username) VALUES ("'.$user_info["user_name"].'")',"",0);	
+		reply_ok("亲爱的".$$user_info['user_name']."，你的账号已经注册成功,登陆后就可以使用贴吧云工具箱了！！","user.php");
 	}else{
 		print_feedback(4);
 	}

@@ -71,6 +71,7 @@
                     <pre class="prettyprint">
                     &lt;div&gt;有问题请联系管理员.&lt;/div&gt;
                     </pre>
+                    <a href="index.php">返回主页</a>
 				</div>	
 			</div>
 			<script type="text/javascript">
