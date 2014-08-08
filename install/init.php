@@ -30,5 +30,5 @@ $mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
 	<p align="center">Bug请反馈到1948638989@qq.com </p>
 	<p align="center"><a href="../user.php">开始使用!</a></p>
 </div>
-<p id="aboutme" align="center">Copyleft <img src="../UI/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
+<p id="aboutme" align="center">Copyleft <img src="../UI/copyleft.ico" width="15" height="15"> 2014.08 By Racaljk. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 

@@ -2,12 +2,12 @@
     color: #444;
     font-size: 1em;
 }
-body {
+body{
     font-family: 'Verdana';
     color: #444;
     font-size: 15px;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x:hidden;
+    overflow-y:hidden;
 }
 #content { background: #000 }
 .contenu {
@@ -85,4 +85,3 @@ body {
 #house8 h2 {
     margin-bottom: 10px;
 }
-

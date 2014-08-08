@@ -1,6 +1,75 @@
 ﻿<?php header("Content-Type: text/html;charset=utf-8");
 include("/config/config.inc.php");
 include("func.feedback.php");
+
+class database
+{
+	public static function logout($username)
+	{
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				@mysql_query('UPDATE tck_user_bind SET cookie="",stoken="",user_baidu_id="",baidu_email="",baidu_mobile="",touxiang="" WHERE username="'.$username.'"');
+				header('Location:../index.php');
+			}
+		}
+	}
+	public static function con($sql_query,$username)
+	{
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				$check=mysql_query('SELECT uid FROM tck_user_bind WHERE username in("'.$username.'")');
+				if(mysql_num_rows($check))
+				{
+					mysql_query("SET NAMES utf8");
+					$result = @mysql_query($sql_query)
+					or print_feedback(21);
+					$ret = mysql_fetch_array($result);
+					return $ret;
+				}else{
+					exit();
+				}
+			}
+		}
+	}
+	public static function sign_get($username)
+	{
+		$result=array();
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				$check=mysql_query('SELECT * FROM tck_liked_tieba WHERE username in("'.$username.'")');
+				if(mysql_num_rows($check))
+				{
+					@mysql_query("SET NAMES utf8")
+					or print_feedback(21);
+					while ($ret = mysql_fetch_array($check)) {
+						array_push($result,$ret);
+					}
+					return $result;
+					
+				}else{
+					exit();
+				}
+			}
+		}
+	}
+}
+
+
 ##Only used for tieba cloud kit!
 class mysql_server_init{
 	function __construct($_host,$_name,$_password,$_dbname)
@@ -24,6 +93,8 @@ class mysql_server_init{
 				@mysql_query('CREATE TABLE tck_member(uid int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),password varchar(200))',$con)
 				or print_feedback(16);
 				@mysql_query('CREATE TABLE tck_user_bind(uid int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),cookie varchar(256),stoken varchar(40),user_baidu_id varchar(50),baidu_email varchar(25),baidu_mobile varchar(13),touxiang varchar(50))',$con)
+				or print_feedback(19);
+				@mysql_query('CREATE TABLE tck_liked_tieba(id int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),utf_8 varchar(256),url varchar(256),fid varchar(9))',$con)
 				or print_feedback(19);
 			 }
 		}

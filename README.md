@@ -5,22 +5,16 @@ Tieba Cloud Kit
 *[博客](http://www.racalinux.cn)<br />
 *版本: v1.0<br />
 
-##文件说明
+##配置要求
 */  <br />
-`SpryAssets`  使用AdobeDreamwaver的spry框架。<br />  
-`user.php`    用户注册&登陆界面<br />
-`index.php`   主界面<br />
+`支持PHP的服务器` <br />  
+`MySql数据库`    <br />
+`开启发送邮件端口` 否则会导致无法正常使用邮件相关服务器.非必要项. <br />
 
-*/install<br />
-`/install/index.php` 引导配置安装界面<br />
-`/install/init.php`  服务器处理初始化<br />
+##说明
+`签到` 部分签到使用kk sign post的数据.
+`BUG` Bug请反馈至1948638989@qq.com.
+`Framework` 由于没有系统学习过PHP,导致代码写得很糟糕，接下来的时间我学习PHP以完善云工具箱功能和Code.
+`滚动条` 如果出现某页面无法滚动，请进入index页面，然后pre/next到你需要的页面即可滚动。
 
-*/lib<br />
-`/lib/config/config.inc.php`  配置信息，包括哦数据库密码。<br />
-`/lib/class.mysql.php`        服务端MySql操作<br />
-`/lib/use.panel.php`          服务端用户注册与登陆<br />
-
-*/theme<br />
-`/theme/css/`  css资源<br />
-`theme/js`     js资源<br />
-`theme/images` images资源<br />
+Copyleft 2014.08 By Racaljk.

@@ -3,6 +3,7 @@ session_start();
 @require_once('./lib/class.mysql.php');
 @require_once('./lib/core/class.baiduopt.php');
 @require_once('./lib/core/indexui.php');
+@require_once('admin.setting.php');
 if(@$_SESSION["s_uname"] == "")
 {
 	header('Location:user.php');
@@ -14,6 +15,7 @@ if(@$_SESSION["s_uname"] == "")
 	}
 }
 $html_page_2=is_bind();
+$html_page_3=tieba_list(get_cookie($_SESSION['s_uname']));
 
 function get_mysql_version(){
 	$con = mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
@@ -39,7 +41,7 @@ function get_mysql_version(){
 <body>
 	<div id="general">
 		<div id="content">
-		<!--Contenu1-->
+		<!--index-->
 			<div>
 				<div class="contenu">
 					<h1><img src="./UI/images/toolbox.png"/></h1>
@@ -49,115 +51,31 @@ function get_mysql_version(){
 					<p id="aboutme" align="center">Copyleft <img src="./UI/copyleft.ico" width="15" height="15"> 2014 Racaljk. All rights reserved. -Source here https://github.com/racaljk/Tieba-Cloud-Kit</p>
 				</div>
 			</div>
+			<!--baidu account bind-->
 			<div>
 				<div class="contenu">
 					<?php echo $html_page_2;?>
 				</div>
             </div>
-			 <div>
-			<!--Contenu3-->
-				<div class="contenu">
+			 
+			<!--tieba info-->
+            <div>
+				<div class="contenu" style="overflow:auto">
 					<h2><img src="./UI/images/sign_state.png"/></h2>
-					<pre class="prettyprint">Tieba Count:
-					</pre>
-						<p class="text">签到状况页面</p><br/>
-					<p>				
-					</p>
-
+					<?php echo $html_page_3;?>
 				</div>	
-			</div>
-
-			<div>		
-			<!--Contenu4-->
-				<div class="contenu">
-					<h2><img src="./UI/images/operationJs.png"/></h2>
-					<p class="text">then in your script file, simply write:</p> <br/>
-					<pre class="prettyprint">$('#house').ascensor();</pre>
-				</div>
-			</div>
-			
-			
-			<!--Contenu5-->
+			</div>		
+			<!--plugin and aboutme-->
 			<div>
 				<div class="contenu">
-					<h2><img src="./UI/images/operationJs2.png"/></h2>
-					<p class="text">There are several settings for this plugin.</p><br/>
-					<pre class="prettyprint">$('#house').ascensor({
-					
-					AscensorName:'house',
-						//you can choose the name that will define id and class (default:'maison')
-					WindowsFocus:true,
-						//if you start on the first content(default:true)
-					WindowsOn:'0',
-						//if you can to start to the 0,1,2,3 etc.. content
-					Direction:'y',
-						//What will be the direction of the ascensor
-					NavigationDirection:'xy',
-						//what will be his navigation direction(par défaut:'xy')
-					});
-					</pre>
+					<h2><img src="./UI/images/plugin.ico"/></h2>
+						<p class="text">如果你有好的建议或者愿意帮助我维护这个项目请联系qq1948638989或者cthulhujk@gmail.com</p><br/>
+						<pre class="prettyprint">Thanks!</pre>
 				</div>
 			</div>
 			
 			
-			<!--Contenu6-->
-			<div>
-				<div class="contenu">
-					<h2><img src="./UI/images/operationJs3.png"/></h2>
-						<p class="text">There are also settings that allow the creation of navigation, disabling certain keys or even send the code to add elements.</p><br/>
-						<pre class="prettyprint">$('#content').ascensor({
-														
-							Navig:true,
-								//if you need a navigation system
-							Link:true,
-								//If you need a link per page for the next page
-							PrevNext:true,
-								//if you need a prev/next button
-							KeyArrow:false,
-								//deactivate the arrow key
-							keySwitch:false,
-								//deactivate navigation by arrow key
-							CSSstyles:true,
-								//if you need the Default CSS plugin
-							ReturnURL:true,
-								//if you need a url per page
-							ReturnCode:true,
-								//Give you id and class of the navig/link/content
-									
-						});</pre>
-				</div>
-			</div>
-			
-			
-			<!--Contenu7-->
-			<div>
-				<div class="contenu">
-					<h2><img src="./UI/images/operationJs4.png"/></h2>
-					<p class="text">There are more complicated settings for this plugin. They can create a system map that defines the scale (AscensorMap) in which we will place each element by a series of coordinates (ContentCoord).</p><br/>
-					<pre class="prettyprint">$('#content').ascensor({
-													
-						ChocolateAscensor:true,
-							//if you need to place yourself all the stage
-						AscensorMap: '4|3',
-							//define the size of a map
-						ContentCoord:'1|1 &amp; 2|2 &amp; 1|2 &amp; 3|4 &amp; 1|3 &amp; 3|1 &amp; 2|3'
-							//place stage one by one, indicating they positionx|positiony
-							
-					});</pre>
-				</div>
-			</div>
-			
-			
-			<!--Contenu7-->
-			<div>
-				<div class="contenu">
-					<h2><img src="./UI/images/operationCss.png"/></h2>
-					<p class="text">Then, Hide scrollbar in css</p><br/>
-					<pre class="prettyprint">body{overflow: hidden;}</pre>
-				</div>
-			</div>
-			
-			
+			<!--tut-->
 			<div>
 				<div class="contenu">
 					<h2><img src="./UI/images/tut.png"/></h2>
@@ -171,27 +89,34 @@ function get_mysql_version(){
 					 <p>图文教程：(如果无法查看请随意调整浏览器大小，然后即可查看)</p>	
 					<h2><img src="./UI/tut/step1.png"/></h2>
 					<h2><img src="./UI/tut/step2.png"/></h2>
-					</div>
+				</div>
 			</div>
-
-			<?php 
-			if($_SESSION['s_uname']==TK_ROOT_NAME)
-			{
-				$con = mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
-				echo "MySQL server info: " . mysql_get_server_info($con);
-				$ip=$_SERVER["REMOTE_ADDR"];
-				$version=get_mysql_version();
-				$div_head='<div><div class="contenu">';
-				$div_tail= '</div></div>';
-				$div_body="
-				<h2><img src='./UI/images/admin.ico'/></h2>
-				<pre class='prettyprint'>Admin Name: {$_SESSION["s_uname"]}	Ip    Address: {$ip}	MySQL Version: {$version}
-				</pre>
-				";
-				echo $div_head.$div_body.$div_tail;			
-			}
-			?>
-		</div>
-		</div>
-</div>
+		<!--adminsetting-->
+		<?php
+		if($_SESSION['s_uname'] == TK_ROOT_NAME)
+		{
+			echo '<div>	
+			<div class="contenu">
+				<h2><img src="./UI/images/setting.ico"/></h2>
+					<p class="text">您好'.$_SESSION['s_uname'].',您可以根据需要进行一些设定。</p> <br/>
+						<form id="admin" name="admin" method="post" action="admin.setting.php">
+							<p><label for="sign_mode"></label>签到模式:
+							<select id ="sign_mode" name="sign_mode" size="1" id="sign_mode">
+							    <option value="1">客户端签到</option>
+							    <option value="2">网页签到</option>
+							</select>
+							</p>
+							<p>签到百度文库<label>
+							<input type="checkbox" id="sign"name="sign[]" value="wenku_sign_button" /></label><br /></p>
+							<p>签到百度知道<label>
+							<input type="checkbox" id="sign" name="sign[]"  value="zhidao_sign_button" /></label><br /></p>	
+						<pre class="prettyprint"><input type="submit" id="submit" name="submit" value="保存设置"></pre>
+						</form>
+				</div>
+		</div>';
+		}else{
+			//hidden
+		}
+		?>
+	</div>
 </body>
