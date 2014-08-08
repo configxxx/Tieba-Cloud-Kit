@@ -1,6 +1,7 @@
 <?php header("Content-Type: text/html;charset=utf-8");
 session_start();
 @require_once(dirname(dirname(__FILE__))."\config\config.inc.php");
+@require_once(dirname(dirname(__FILE__))."\config\admin.config.php");
 @require_once(dirname(dirname(dirname(__FILE__))).'\api.php');
 @require_once("class.baiduopt.php");
 
@@ -46,7 +47,9 @@ function tieba_list($cookie)
 	$check = baiduopt::confirmation(get_cookie($uname));
 	if($check['is_login']==true)
 	{
-		$construct='<pre class="prettyprint">亲爱的 '.$name.' 你一共喜欢了'.$count.' 个吧,下面是详细情况:</pre><br/>
+		TK_WENKEN_SIGN_SWITCH==""?$wenku="管理员开启了文库签到":$wenku="管理员关闭了文库签到";
+		TK_WENKEN_SIGN_SWITCH==""?$zhidao="管理员开启了知道签到":$zhidao="管理员关闭了知道签到";
+		$construct='<pre class="prettyprint">亲爱的 '.$name.' 你一共喜欢了'.$count.' 个吧,下面是详细情况:</pre><br/><p>公告：'.$wenku.'||'.$zhidao.'</p>
 		<p>'.$ret.'</p>';
 		return $construct;
 	}else{

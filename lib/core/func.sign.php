@@ -1,8 +1,9 @@
-<?php header("Content-Type: text/html;charset=utf-8");
-@require_once('../class.mysql.php');
-@require_once("class.baiduopt.php");
+<?php 
 session_start();
-error_reporting(1024);
+header("Content-Type: text/html;charset=utf-8");
+require_once(dirname(dirname(__FILE__)).'\class.mysql.php');
+require_once('class.baiduopt.php');
+
 function do_sign($cookie,$username){
 	$tieba = array();
 	$return_code=array();
@@ -13,8 +14,5 @@ function do_sign($cookie,$username){
 	for ($k=0; $k < count($tieba); $k++) { 
 		$return_code[$k]=baiduopt::client_sign($cookie,$tieba[$k]);
 	}
-	print_r($return_code);
 }
-$cookie=get_cookie($_SESSION['s_uname']);
-do_sign($cookie);
 ?>
