@@ -12,9 +12,9 @@ Tieba Cloud Kit
 `开启发送邮件端口` 否则会导致无法正常使用邮件相关服务器.非必要项. <br />
 
 ##说明
-`签到` 部分签到使用kk sign post的数据.
-`BUG` Bug请反馈至1948638989@qq.com.
-`Framework` 由于没有系统学习过PHP,导致代码写得很糟糕，接下来的时间我学习PHP以完善云工具箱功能和Code.
-`滚动条` 如果出现某页面无法滚动，请进入index页面，然后pre/next到你需要的页面即可滚动。
+`签到` 部分签到使用kk sign post的数据.<br />  
+`BUG` Bug请反馈至1948638989@qq.com.<br />  
+`Framework` 由于没有系统学习过PHP,导致代码写得很糟糕，接下来的时间我学习PHP以完善云工具箱功能和Code.<br />  
+`滚动条` 如果出现某页面无法滚动，请进入index页面，然后pre/next到你需要的页面即可滚动。<br /> <br />   
 
 Copyleft 2014.08 By Racaljk.

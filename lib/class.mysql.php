@@ -173,24 +173,4 @@ class mysql_main{
 	var $admin_password;
 }
 
-
-class user_bind
-{
-	public static function bind($json,$cookie,$stoken,$username){
-		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
-		if(!$con)
-		{
-			print_feedback(8);
-		}else{
-			if(mysql_select_db(TK_TABLE,$con))
-			{
-				mysql_query("set names utf8");
-				mysql_query('UPDATE tck_user_bind SET cookie="'.$cookie.'",stoken="'.$stoken.'",user_baidu_id="'.$json['data']['user_name_show'].'",baidu_email="'.$json['data']['email'].'",baidu_mobile="'.$json['data']['mobilephone'].'",touxiang="'.$json['data']['user_portrait'].'" WHERE username="'.$username.'"')
-				or print_feedback(19);
-			}else{
-				print_feedback(21);
-			}
-		}
-	}
-}
 ?>

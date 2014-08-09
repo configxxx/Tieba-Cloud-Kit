@@ -59,10 +59,14 @@ function get_mysql_version(){
             </div>
 			 
 			<!--tieba info-->
-            <div>
+            <div style="overflow-y:auto;">
 				<div class="contenu" style="overflow:auto">
 					<h2><img src="./UI/images/sign_state.png"/></h2>
-					<?php echo $html_page_3;?>
+					<?php 
+					echo $html_page_3[1];
+					foreach ($html_page_3[0] as $value) {
+						echo $value;
+					};?>
 				</div>	
 			</div>		
 			<!--plugin and aboutme-->
