@@ -4,8 +4,8 @@
 * Base on kk sign
 * fix up function _zhidao_sign
 */
-@require_once(dirname(dirname(__FILE__)).'\functional.php');
-@error_reporting(1024);
+require_once(dirname(dirname(__FILE__)).'\functional.php');
+error_reporting(1024);
 class baiduopt
 {
 	public static function get_userinfo($cookie_)

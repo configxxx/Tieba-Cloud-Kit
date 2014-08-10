@@ -10,7 +10,7 @@ if(isset($_POST['submit_reg']))
 		//regist event
 		$reg_mysql = new sqlserver();
 		$reg_mysql -> regist($_POST['username'],md5($_POST['userpassword']),0);
-		reply_ok("亲爱的".$$user_info['user_name']."，你的账号已经注册成功,登陆后就可以使用贴吧云工具箱了！！","user.php");
+		header('Location:../index.php');
 	}else{
 		print_feedback(4);
 	}
@@ -25,7 +25,6 @@ if(isset($_POST['submit_reg']))
 	}else{
 		print_feedback(5);
 	}
-
 }else{
 	print_feedback(6);
 }

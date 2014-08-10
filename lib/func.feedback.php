@@ -113,7 +113,7 @@ function print_feedback($errid)
 		}
 	}
 }
-
+/*使用Bootstrap UI，故弃用*/
 function reply_ok($print,$back_to)
 {
 	$state_ok="../UI/images/ok.png";
