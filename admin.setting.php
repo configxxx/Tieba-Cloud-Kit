@@ -30,5 +30,4 @@ if(isset($_POST['sign']))
 			  'define("TK_ZHIDAO_SIGN_SWITCH","");?>');
 				file_put_contents('./lib/config/admin.config.php',$config);
 }
-echo"ok";
 ?>

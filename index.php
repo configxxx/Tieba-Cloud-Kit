@@ -1,37 +1,28 @@
 <?php 
 session_start();
-require_once('./lib/config/config.inc.php');
+require_once('./lib/class.mysql.php');
+require_once('./lib/core/class.baiduopt.php');
 require_once('./lib/core/indexui.php');
-//@require_once('./lib/class.mysql.php');
-//@require_once('./lib/core/class.baiduopt.php');
-//@require_once('./lib/core/indexui.php');
-//@require_once('admin.setting.php');
+require_once('admin.setting.php');
+
+$opt_flag="";
+
 if($_SESSION["s_uname"] == "")
 {
     header('Location:user.php');
 }else{
+    global $opt_flag;
     if($_SESSION["s_uname"] ==TK_ROOT_NAME){
-      $opt_flag=0;
+        $opt_flag=true;//for admin mode
     }else{
-        $opt_flag=1;
+        $opt_flag=false;//for normal mode
     }
 }
-$bind_html=is_bind();
 
-if($bind_html==0)
-{
-    $bind_html='<section class="content">
-        <div class="box box-solid bg-light-blue">
-        <div class="box-header">
-        <h3 class="box-title">Notice!</h3>
-         </div>
-         <div class="box-body">
-            你没有绑定百度账号，因此无法使用云工具箱服务，请粘贴你的<code>Cookie</code>到下面以完成绑定。
-        </p>
-        </div>
-        </div></section>';
-}
+$baidu_info=tieba_info();
+$_list=tieba_list();
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -56,11 +47,12 @@ if($bind_html==0)
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
     </head>
-    <body class="skin-blue">
 <!--#############################################################################################-->
+    <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="#home" class="logo">贴吧云工具箱</a>
+            <a href="#home" class="logo"> 贴吧云工具箱
+            </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -76,30 +68,28 @@ if($bind_html==0)
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><?php echo $_SESSION['s_uname'];?><i class="caret"></i></span>
+                                <span><?php echo $baidu_info['name']?><i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                                    <p>
-                                        百度ID - 
-                                    </p>
+                                <li class="user-header bg-light-blue">     
+                                    <?php echo '<img src="'.$baidu_info['tieba_touxiang'].'" class="img-circle" alt="User Image" /><p>'.$baidu_info['tieba_name'][0].$baidu_info['tieba_name'][1].'</p>';?>
                                 </li>
                                 <!-- Menu Body -->
                                 <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">状态:{是否绑定ID}</a>
+                                    <div class=" text-center">
+                                        <p><?php echo $baidu_info['other_api']?></p>
                                     </div>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <form method="post" action="./lib/user.panel.php"><div class="pull-left">
+                                        <a href="#bind_id" class="btn btn-default btn-flat" data-toggle="tab">账号信息</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="./lib/logout.php" class="btn btn-default btn-flat">退出登录</a>
                                     </div>
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -107,8 +97,7 @@ if($bind_html==0)
                 </div>
             </nav>
         </header>
-<!--#############################################################################################-->
-        <div class="wrapper row-offcanvas row-offcanvas-left">
+<!--#############################################################################################-->        <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -116,10 +105,12 @@ if($bind_html==0)
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                        <?php echo '
+                            <img src="'.$baidu_info['tieba_touxiang'].'" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                        <p><?php echo"你好，".$_SESSION['s_uname'];?></p>
+                        <p>你好，'.$baidu_info['name'].'</p>';
+                        ?>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -179,18 +170,18 @@ if($bind_html==0)
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
+                            <a href="#" data-toggle="tab">
+                                <i class="fa fa-table"></i> <span>我的贴吧</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                                <li><a href="#mytieba" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 我喜欢的吧</a></li>
                                 <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>test</span>
+                                <i class="fa fa-calendar"></i> <span>Calendar</span>
                                 <small class="badge pull-right bg-red">3</small>
                             </a>
                         </li>
@@ -250,9 +241,9 @@ if($bind_html==0)
                                     </p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion fa-chain "></i>
+                                    <i class="fa fa-chain "></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="#bind_id"  data-toggle="tab" class="small-box-footer">
                                     Do it <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -269,10 +260,10 @@ if($bind_html==0)
                                     </p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion fa-tumblr-square"></i>
+                                    <i class="fa fa-bookmark-o"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    See my tieba <i class="fa fa-arrow-circle-right"></i>
+                                    See it <i class="fa fa-vimeo-square"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -434,49 +425,223 @@ if($bind_html==0)
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-5 connectedSortable">                           
 
-                            <!--###########################-->
+                            <!-- Calendar -->
                             <div class="box box-solid bg-green-gradient">
                                 <div class="box-header">
                                     <i class="fa fa-calendar"></i>
-                                    <h3 class="box-title">通知</h3>
+                                    <h3 class="box-title">Calendar</h3>
+                                    <!-- tools box -->
                                     <div class="pull-right box-tools">
+                                        <!-- button with a dropdown -->
+                                        <div class="btn-group">
+                                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                <li><a href="#">Add new event</a></li>
+                                                <li><a href="#">Clear events</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">View calendar</a></li>
+                                            </ul>
+                                        </div>
                                         <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>                                        
-                                    </div>
-                                </div>
-
+                                    </div><!-- /. tools -->
+                                </div><!-- /.box-header -->
                                 <div class="box-body no-padding">
-                                    <div id="notice" style="width: 100%"></div>
-                                </div>
+                                    <!--The calendar -->
+                                    <div id="calendar" style="width: 100%"></div>
+                                </div><!-- /.box-body -->  
                                 <div class="box-footer text-black">
                                     <div class="row">
-                                        <p>·全新风格，让你眼前一亮！</p>
-                                    </div>
-                                </div><!-- /.row -->                                                                        
+                                        <div class="col-sm-6">
+                                            <!-- Progress bars -->
+                                            <div class="clearfix">
+                                                <span class="pull-left">Task #1</span>
+                                                <small class="pull-right">90%</small>
+                                            </div>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                                            </div>
+
+                                            <div class="clearfix">
+                                                <span class="pull-left">Task #2</span>
+                                                <small class="pull-right">70%</small>
+                                            </div>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                                            </div>
+                                        </div><!-- /.col -->
+                                        <div class="col-sm-6">
+                                            <div class="clearfix">
+                                                <span class="pull-left">Task #3</span>
+                                                <small class="pull-right">60%</small>
+                                            </div>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                                            </div>
+
+                                            <div class="clearfix">
+                                                <span class="pull-left">Task #4</span>
+                                                <small class="pull-right">40%</small>
+                                            </div>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                                            </div>
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->                                                                        
+                                </div>
                             </div><!-- /.box -->                            
 
                         </section><!-- right col -->
                     </div><!-- /.row (main row) -->
 
-                </section>
-
-                <!--###########################-->
+                </section><!-- /.content -->
             </aside>
             </div>
 <!--#############################################################################################-->
             <div class="tab-pane" id="bind_id"  >
-             <aside class="right-side">
-            <div class="container">
-            <?php echo $bind_html;?>
+                <aside class="right-side">
+                <!--header-->
+                <section class="content-header">
+                    <h1>
+                        账号信息
+                        <small>My id info</small>
+                    </h1>
+                </section>
+                <!--end header-->
+                <!--notice-->
+                <?php
+                if($baidu_info['is_login']==true){
+                    $info_box='
+                    <section class="content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                        <div class="box box-solid box-success">
+                                            <div class="box-header">
+                                                <h3 class="box-title">ID Info</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body" style="display: block;font-size:20px;">
+                                            <img src="'.$baidu_info['tieba_touxiang'].'"><br>
+                                                百度账号: <code>'.$baidu_info['tieba_name'][1].'</code><br>
+                                                绑定邮箱: <code>'.$baidu_info['baidu_email'].'</code><br>
+                                                绑定手机: <code>'.$baidu_info['baidu_mobile'].'</code><br>
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <div class="box box-solid box-primary">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Tieba Info</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    <button class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                贴吧总数:<code>'.count($_list).'</code>
+                                            </div>
+                                        </div>
+                                <div>
+                            </div>
+                        </section>';
+                            echo $info_box;
+                }else{
+                    echo        
+                '<div class="pad margin no-print">
+                    <div class="alert alert-info" style="margin-bottom: 0!important;">
+                        <i class="fa fa-info"></i>
+                        <b>注意：</b>你没有绑定百度账号,所以无法使用云工具箱,请把你的Cookie粘贴至下面以完成绑定.
+                    </div>
+                </div>
+                <!--end notice-->
+
+                <!--main ui-->
+                <section class="content invoice">
+                    
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="page-header">
+                                <i class="fa fa-globe"></i> 请粘贴你的Cookie至下面，如果你不知道如何获取Cookie,请 访问侧栏"支持->获取Cookie."部分.
+                                <small class="pull-right">Default</small>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row invoice-info"> 
+                    <form method="post" action="./lib/user.bind.php">
+                    <div class="input-group">
+                    <span class="input-group-addon">BDUSS=</span>
+                    <input type="text" class="form-control" placeholder="Your cookie" id="cookie" name="cookie" style="width:60%;" >
+                    </div><p>&nbsp;</p>
+                    <input type="submit" class="form-control" id="submit_bind" name="submit_bind"  style="width:10%">
+                    </form>          
+                    </div>
+                </section>
+                <!--end main ui-->';
+                } 
+                ?>
+                </aside>
             </div>
+<!--#############################################################################################-->
+            <div class="tab-pane" id="mytieba">
+            <aside class="right-side"> 
+                <section class="content-header">
+                    <h1>
+                        My Tieba
+                        <small>advanced tieba data</small>
+                    </h1>
+                </section>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">我喜欢的贴吧</h3>
+                                </div>
+                                <div class="box-body table-responsive">
+                                    <table id="tieba_list" class="table table-bordered table-hober">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>贴吧名</th>
+                                                <th>经验</th>
+                                                <th>状态</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $table=array();
+                                            $k=0;
+                                            if($_list[0] == 0 )
+                                            {
+                                                echo $_list[1];
+                                            }else{
+                                                foreach ($_list as  $value) {
+                                                    $table[$k] .='<tr><td>'.$k.'</td><td>'.$value['utf8_name'].'</td></tr>';
+                                                    $k++;
+                                                }
+                                                 print_r(implode("",$table));
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>         
+                    </div>
+                </section>
+
             </aside>
             </div>
  <!--#############################################################################################-->
          </div>
-        <script src="js/jquery2.0.2.js" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/raphael-min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
         <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
@@ -489,6 +654,5 @@ if($bind_html==0)
         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
         <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
         <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
-<!--#############################################################################################-->
     </body>
 </html>

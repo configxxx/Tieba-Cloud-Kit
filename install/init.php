@@ -1,7 +1,7 @@
 <?php header("Content-Type: text/html;charset=utf-8");
 require_once(dirname(dirname(__FILE__)).'\lib\class.mysql.php');
 $configinc = dirname(dirname(__FILE__))."\lib\config\config.inc.php";
-chmod($configinc,0755);
+//chmod($configinc,0755);
 //配置文件建立
 $config=array('<?php header("Content-Type: text/html;charset=utf-8");'."\n",
 			  'define("TK_HOST","'.$_GET['db_host'].'");'."\n",

@@ -82,7 +82,7 @@ class sqlserver extends sql_base
 	{
 		if($table=="tck_liked_tieba")
 		{
-			for ($i=0; $i < $loop_data; $i++) { 
+			for ($i=0; $i < $loop; $i++) { 
 				parent::query('INSERT INTO tck_liked_tieba(username,utf_8,url,fid) VALUES("'.$username.'","'.$data[$i]['utf8_name'].'","'.$data[$i]['url'].'","'.$data[$i]['balvid'].'")');
 			}
 		}
@@ -109,8 +109,8 @@ class sqlserver extends sql_base
 			}
 		}else{
 			//login
-			$check = parent::query('select uid from tck_member where username in("'.$username.'") and password in("'.$user_password.'")');
-			if($result = mysql_fetch_array($check))
+			$check = parent::query('SELECT  * FROM tck_member WHERE username ="'.$username.'" and password ="'.$user_password.'"');
+			if(mysql_num_rows($check))
 			{
 				return 1;
 			}else{
@@ -118,5 +118,6 @@ class sqlserver extends sql_base
 			}
 		}
 	}
+
 }
 ?>

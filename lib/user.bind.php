@@ -6,7 +6,7 @@ require_once('class.sqlserver.php');
 
 if(!empty($_POST['cookie']))
 {
-	$bduss=$_POST['cookie'];
+	$bduss='BDUSS='.$_POST['cookie'];
 	$username=$_SESSION['s_uname'];
 	$stoken="";
 	$json =baiduopt::get_userinfo($bduss);
@@ -23,10 +23,7 @@ if(!empty($_POST['cookie']))
 	$str = baiduopt::get_liked_tieba($bduss);
 	$tieba = html_analysis($str);
 	$sql->insert('tck_liked_tieba',count($tieba),$username,$tieba);
-	reply_ok('绑定成功啦~\(≧▽≦)/~啦啦啦',"index.php");
-}elseif($_POST['logout']){
-	$sql=new sqlserver();
-	$sql->clean('tck_user_bind',$_SESSION['s_uname']);
+	header('Location:../index.php');
 }else{
 	print_feedback(20);
 }

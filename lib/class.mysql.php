@@ -96,6 +96,8 @@ class mysql_server_init{
 				or print_feedback(19);
 				@mysql_query('CREATE TABLE tck_liked_tieba(id int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),utf_8 varchar(256),url varchar(256),fid varchar(9))',$con)
 				or print_feedback(19);
+				@mysql_query('CREATE TABLE tck_cron(id VARCHAR(10) ,number VARCHAR(5) ,nexttime VARCHAR(4))',$con)
+				or print_feedback(19);
 			 }
 		}
 	}
@@ -105,6 +107,7 @@ class mysql_server_init{
 		if($con){
 			if(mysql_select_db($this->dbname)){
 				$salt=md5($admin_password);
+				@mysql_query('INSERT INTO tck_cron(name,id,nexttime) VALUES("do_sign","1","'.(time()+60).'")');
 				@mysql_query('INSERT INTO tck_member(uid,username,password) VALUES( 0 ,"'."$admin_name".'",'.'"'."$salt".'")')
 				or print_feedback(17);
 				@mysql_query('INSERT INTO tck_user_bind(uid,username) VALUES( 0 ,"'.$admin_name.'")')

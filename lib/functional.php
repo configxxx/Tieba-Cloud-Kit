@@ -1,4 +1,5 @@
 <?php header("Content-Type: text/html;charset=utf-8");
+require_once ('class.mysql.php');
 
 class json_code{
 	public static function icon_to_utf8($s) {
@@ -76,5 +77,19 @@ function get_cookie($username)
 	$sql = 'SELECT * FROM `tck_user_bind` WHERE username="'.$username.'"';
 	$count = database::con($sql,$username);
 	return $count[2];
+}
+
+function do_sign($username){
+	$tieba = array();
+	$return_code=array();
+	$cookie = get_cookie($username);
+	$tieba_get=database::sign_get($username);
+	for ($i=0; $i < count($tieba_get); $i++) { 
+		$tieba[$i] = array('url' => $tieba_get[$i][3],'fid'=>$tieba_get[$i][4]);
+	}
+	for ($k=0; $k < count($tieba); $k++) { 
+		$return_code[$k]=baiduopt::client_sign($cookie,$tieba[$k]);
+	}
+	return $return_code;
 }
 ?>

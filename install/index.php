@@ -117,6 +117,6 @@
   </div>
 
     <div class="container" align="center">
-    Copyright (C) 2014 Tieba Cloud Kit  by racal.Comply with GPL open source license agreement.
+    Copyright (C) 2014 Tieba Cloud Kit  by racal.Comply with MIT open source license agreement.
     </div>
 </body>
