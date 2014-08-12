@@ -74,7 +74,4 @@ class cron_sign
 	private $con;
 	private $start_id;
 }
-
-$s=new cron_sign();
-$s->run();
 ?>
