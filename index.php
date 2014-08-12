@@ -51,7 +51,7 @@ $_list=tieba_list();
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="#home" class="logo"> 贴吧云工具箱
+            <a href="#home" class="logo"> <i class="fa fa-cloud"></i> 贴吧云工具箱
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -126,11 +126,13 @@ $_list=tieba_list();
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
+                        <!--主页-->
                         <li class="active">
                             <a href="#home" data-toggle="tab">
                                 <i class="fa fa-dashboard"></i> <span>主页</span>
                             </a>
                         </li>
+                        <!--账号信息-->
                         <li>
                             <a href="#bind_id" data-toggle="tab">
                                 <i class="fa fa-th"></i> <span>帐号信息</span> <small class="badge pull-right bg-green">new</small>
@@ -146,20 +148,6 @@ $_list=tieba_list();
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>UI Elements</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
                                 <i class="fa fa-edit"></i> <span>Forms</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -170,13 +158,27 @@ $_list=tieba_list();
                             </ul>
                         </li>
                         <li class="treeview">
-                            <a href="#" data-toggle="tab">
+                            <a href="#">
                                 <i class="fa fa-table"></i> <span>我的贴吧</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#mytieba" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 我喜欢的吧</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> 统计数据</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>管理面板</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
+                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
+                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
+                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
                             </ul>
                         </li>
                         <li>
@@ -193,15 +195,15 @@ $_list=tieba_list();
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
+                                <i class="fa fa-folder"></i> <span>支持</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                                <li><a href="http://www.racalinux.cn" target="_blank"><i class="fa fa-angle-double-right"></i> 博客</a></li>
                                 <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
                                 <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
+                                <li><a href="#getcookie" data-toggle="tab"><i class="fa fa-angle-double-right"></i>如何获取Cookie？</a></li>
                                 <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
                                 <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
                             </ul>
@@ -262,7 +264,7 @@ $_list=tieba_list();
                                 <div class="icon">
                                     <i class="fa fa-bookmark-o"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="#mytieba" class="small-box-footer" data-toggle="tab">
                                     See it <i class="fa fa-vimeo-square"></i>
                                 </a>
                             </div>
@@ -541,7 +543,9 @@ $_list=tieba_list();
                                                 </div>
                                             </div>
                                             <div class="box-body">
-                                                贴吧总数:<code>'.count($_list).'</code>
+                                                贴吧总数:<code>'.count($_list).'</code><br>
+                                                经验最高的贴吧:<code>'.$_list[0]['utf8_name'].'</code><br>
+                                                经验最低的贴吧:<code>'.$_list[count($_list)-1]['utf8_name'].'</code><br>
                                             </div>
                                         </div>
                                 <div>
@@ -620,7 +624,7 @@ $_list=tieba_list();
                                                 echo $_list[1];
                                             }else{
                                                 foreach ($_list as  $value) {
-                                                    $table[$k] .='<tr><td>'.$k.'</td><td>'.$value['utf8_name'].'</td></tr>';
+                                                    $table[$k] .='<tr><td>'.$k.'</td><td>'.$value['utf8_name'].'</td><td>undefine</td><td>undefine</td></tr>';
                                                     $k++;
                                                 }
                                                  print_r(implode("",$table));
@@ -637,6 +641,39 @@ $_list=tieba_list();
             </aside>
             </div>
  <!--#############################################################################################-->
+            <div class="tab-pane" id="getcookie">
+            <aside class="right-side"> 
+                <section class="content-header">
+                    <h1>Support Page</h1>
+                </section>
+                <section class="content">
+                    <div class="row"><div class="col-md-12"><div class="box box-primary">
+                     <div class="box-header">
+                            <i class="fa fa-edit"></i>
+                            <h3 class="box-title">How to Get Cookie</h3>
+                    
+                    </div>
+                    <div class="box-body pad table-responsive">
+                        <p>Chrome浏览器/遨游3/360极速浏览器/..</p>
+                        <p>·第一步, 进入http://tieba.baidu.com/然后登陆你的账号，点击浏览器地址栏类似文件夹的图标，在弹出的方框中选择"显示Cookies和网站数据"</p>
+                        <p>·第一步, 在弹出的的方框中依次选择baidu.com->Cookie->BDUSS,然后你就可以下面的内容上查看你的Cookie，注意，他不是完全的，只显示了一部分，所以需要点击内容那个区域然后ctrl+a选中再按下ctrl+c复制</p>
+                        <p>·第三步, 最后把这些全部复制到账号绑定页面按下确定即可完成绑定</p>
+                        <p>&nbsp;</p>
+                        <p>在下一个版本中可能会增加自动绑定API，敬请期待~</p>
+                         <p>图文教程</p>  
+                        <h2><img src="./img/tut/step1.png"/></h2>
+                        <h2><img src="./img/tut/step2.png"/></h2>
+                        <p>如果你还有其他教程请发送至1948638989@qq.com</p> 
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </section>
+
+            </aside>
+            </div>
+ <!--#############################################################################################-->
+     
          </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
