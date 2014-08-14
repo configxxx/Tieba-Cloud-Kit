@@ -33,16 +33,6 @@ $_list=tieba_list();
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
         <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Morris chart -->
-        <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
-        <!-- jvectormap -->
-        <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        <!-- Date Picker -->
-        <link href="css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-        <!-- Daterange picker -->
-        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
     </head>
@@ -151,9 +141,7 @@ $_list=tieba_list();
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+                                <li><a href="#sign"  data-toggle="tab"><i class="fa fa-angle-double-right"></i> 云签到</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -173,32 +161,20 @@ $_list=tieba_list();
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i>Undefined</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="pages/mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                            </a>
-                        </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-folder"></i> <span>支持</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                                <li><a href="#about" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 开发摘要</a></li>
                                 <li><a href="http://www.racalinux.cn" target="_blank"><i class="fa fa-angle-double-right"></i> 博客</a></li>
-                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                                <li><a href="#donation"><i class="fa fa-angle-double-right"></i> 赞助</a></li>
                                 <li><a href="#getcookie" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 如何获取Cookie？</a></li>
-                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -276,7 +252,7 @@ $_list=tieba_list();
                                 <div class="icon">
                                     <i class="fa fa-cloud"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="#sign" data-toggle="tab" class="small-box-footer">
                                     Setting <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -295,7 +271,7 @@ $_list=tieba_list();
                                 <div class="icon">
                                     <i class="fa fa-github-square"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="#about" data-toggle="tab" class="small-box-footer">
                                     Looking <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -312,15 +288,6 @@ $_list=tieba_list();
                                 <div class="box-header">
                                     <i class="ion ion-clipboard"></i>
                                     <h3 class="box-title">用户操作</h3>
-                                    <div class="box-tools pull-right">
-                                        <ul class="pagination pagination-sm inline">
-                                            <li><a href="#">&laquo;</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">&raquo;</a></li>
-                                        </ul>
-                                    </div>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     <ul class="todo-list">
@@ -354,90 +321,21 @@ $_list=tieba_list();
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </span>
                                             <input type="checkbox" value="" name=""/>
-                                            <span class="text">Make the theme responsive</span>
-                                            <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="handle">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </span>
-                                            <input type="checkbox" value="" name=""/>
-                                            <span class="text">Let theme shine like a star</span>
-                                            <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="handle">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </span>
-                                            <input type="checkbox" value="" name=""/>
-                                            <span class="text">Let theme shine like a star</span>
-                                            <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="handle">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </span>
-                                            <input type="checkbox" value="" name=""/>
-                                            <span class="text">Check your messages and notifications</span>
-                                            <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="handle">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </span>
-                                            <input type="checkbox" value="" name=""/>
-                                            <span class="text">Let theme shine like a star</span>
-                                            <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
+                                            <span class="text">云签到开始运行</span>
+                                            <small class="label label-info"><i class="fa fa-clock-o"></i></small>
+
                                         </li>
                                     </ul>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->                      
 
                         </section><!-- /.Left col -->
-                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-5 connectedSortable">                           
-
-                            <!-- Calendar -->
                             <div class="box box-solid bg-green-gradient">
                                 <div class="box-header">
-                                    <i class="fa fa-calendar"></i>
-                                    <h3 class="box-title">Calendar</h3>
-                                    <!-- tools box -->
+                                    <i class="fa fa-bullhorn"></i>
+                                    <h3 class="box-title">公告</h3>
                                     <div class="pull-right box-tools">
-                                        <!-- button with a dropdown -->
-                                        <div class="btn-group">
-                                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-                                            <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Add new event</a></li>
-                                                <li><a href="#">Clear events</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">View calendar</a></li>
-                                            </ul>
-                                        </div>
                                         <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>                                        
                                     </div><!-- /. tools -->
@@ -446,51 +344,17 @@ $_list=tieba_list();
                                     <!--The calendar -->
                                     <div id="calendar" style="width: 100%"></div>
                                 </div><!-- /.box-body -->  
-                                <div class="box-footer text-black">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- Progress bars -->
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #1</span>
-                                                <small class="pull-right">90%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                            </div>
-
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #2</span>
-                                                <small class="pull-right">70%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                            </div>
-                                        </div><!-- /.col -->
-                                        <div class="col-sm-6">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #3</span>
-                                                <small class="pull-right">60%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                            </div>
-
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #4</span>
-                                                <small class="pull-right">40%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                            </div>
-                                        </div><!-- /.col -->
-                                    </div><!-- /.row -->                                                                        
+                                <div class="box-body">
+                                    <div class="callout callout-info">
+                                        <h4>欢迎使用贴吧云工具箱V2.1</h4>
+                                    </div>                                            
                                 </div>
-                            </div><!-- /.box -->                            
+                            </div>                          
 
-                        </section><!-- right col -->
-                    </div><!-- /.row (main row) -->
+                        </section>
+                    </div>
 
-                </section><!-- /.content -->
+                </section>
             </aside>
             </div>
 <!--#############################################################################################-->
@@ -725,19 +589,119 @@ $_list=tieba_list();
             </aside>
             </div>
  <!--#############################################################################################-->
-         </div>
+        <div class="tab-pane" id="sign" name="sign">
+            <aside class="right-side"> 
+                <section class="content-header">
+                    <h1>Cloud Sign</h1>
+                </section>
+                <section class="content">
+                    <div class="jumbotron">
+                      <h1>欢迎使用贴吧云签到,一切运行正常！</h1>
+                      <p>当你绑定账号后云签到会自动运行。</p>
+                      <p><a  href="#home" data-toggle="tab" class="btn btn-primary btn-lg" role="button">返回主页</a></p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+<!--#############################################################################################-->
+        <div class="tab-pane" id="about" name="about">
+            <aside class="right-side"> 
+                <section class="content-header">
+                    <h1>About Tieba Cloud Kit</h1>
+                </section>
+                <section class="content">
+
+                <section class="content invoice">
+                    <!-- title row -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="page-header">
+                                <i class="fa fa-globe"></i> 开发摘要
+                            </h2>
+                        </div><!-- /.col -->
+                    </div>
+                    
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-xs-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>版本</th>
+                                        <th>时间</th>
+                                        <th>描述</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>v1.0</td>
+                                        <td>2014-7-30</td>
+                                        <td>项目开始</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v1.0</td>
+                                        <td>2014-7-30</td>
+                                        <td>使用Spry UI框架作为登录界面</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>v1.0</td>
+                                        <td>2014-8-1</td>
+                                        <td>项目托管，完成管理员数据库初始化与配置</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v1.0</td>
+                                        <td>2014-8-4</td>
+                                        <td>创建粗糙用户界面，完成注册登录系统</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.0</td>
+                                        <td>2014-8-5</td>
+                                        <td>Ascensor UI作为主界面,美化html</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.0</td>
+                                        <td>2014-8-6</td>
+                                        <td>增加百度登录界面</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.0</td>
+                                        <td>2014-8-7</td>
+                                        <td>修复大量BUGS，调用调用http://api.hitokoto.us/ API接口，完成百度账号基本信息读取</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.0</td>
+                                        <td>2014-8-8</td>
+                                        <td>弃用API接口登录，使用COOKIE填写，预计后面会自己开发API</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.1</td>
+                                        <td>2014-8-9</td>
+                                        <td>UI重新架构，使用Bootstrap框架，使用class.slqserver.php管理数据库(50%)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>v2.1</td>
+                                        <td>2014-8-12</td>
+                                        <td>完成计划任务</td>
+                                    </tr>         
+                                    <tr>
+                                        <td>v2.1</td>
+                                        <td>2014-8-14</td>
+                                        <td>基本完成，增加吧务数据统计.</td>
+                                    </tr>                            
+                                </tbody>
+                            </table>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </section>
+            </aside>
+        </div>
+<!--#############################################################################################-->
+        </div>
         <script src="./js/jquery2.0.2.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-        <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-        <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-        <script src="js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
-        <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-        <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
         <script src="js/TCKJS/app.js" type="text/javascript"></script>
         <script src="js/TCKJS/dashboard.js" type="text/javascript"></script>
         <script src="js/TCKJS/demo.js" type="text/javascript"></script>
