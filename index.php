@@ -4,7 +4,6 @@ require_once('./lib/class.mysql.php');
 require_once('./lib/core/class.baiduopt.php');
 require_once('./lib/core/indexui.php');
 require_once('admin.setting.php');
-
 $opt_flag="";
 
 if($_SESSION["s_uname"] == "")
@@ -87,7 +86,7 @@ $_list=tieba_list();
                                         <a href="#bind_id" class="btn btn-default btn-flat" data-toggle="tab">账号信息</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="./lib/logout.php" class="btn btn-default btn-flat">退出登录</a>
+                                        <a href="./lib/logout.php" class="btn btn-default btn-flat">解除绑定</a>
                                     </div>
                                     </form>
                                 </li>
@@ -148,7 +147,7 @@ $_list=tieba_list();
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
+                                <i class="fa fa-edit"></i> <span>云项目</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
@@ -164,7 +163,7 @@ $_list=tieba_list();
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#mytieba" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 我喜欢的吧</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> 统计数据</a></li>
+                                <li><a href="#state" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 统计数据(吧务)</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -182,12 +181,6 @@ $_list=tieba_list();
                             </ul>
                         </li>
                         <li>
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <small class="badge pull-right bg-red">3</small>
-                            </a>
-                        </li>
-                        <li>
                             <a href="pages/mailbox.html">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
                                 <small class="badge pull-right bg-yellow">12</small>
@@ -203,7 +196,7 @@ $_list=tieba_list();
                                 <li><a href="http://www.racalinux.cn" target="_blank"><i class="fa fa-angle-double-right"></i> 博客</a></li>
                                 <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
                                 <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="#getcookie" data-toggle="tab"><i class="fa fa-angle-double-right"></i>如何获取Cookie？</a></li>
+                                <li><a href="#getcookie" data-toggle="tab"><i class="fa fa-angle-double-right"></i> 如何获取Cookie？</a></li>
                                 <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
                                 <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
                             </ul>
@@ -274,17 +267,17 @@ $_list=tieba_list();
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>
-                                        44
+                                        云项目
                                     </h3>
                                     <p>
-                                        User Registrations
+                                        Cloud Projects 
                                     </p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-person-add"></i>
+                                    <i class="fa fa-cloud"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    Setting <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -293,17 +286,17 @@ $_list=tieba_list();
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        65
+                                        其他
                                     </h3>
                                     <p>
-                                        Unique Visitors
+                                        Other for developers
                                     </p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
+                                    <i class="fa fa-github-square"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    Looking <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -340,9 +333,15 @@ $_list=tieba_list();
                                             <!-- checkbox -->
                                             <input type="checkbox" value="" name=""/>
                                             <!-- todo text -->
-                                            <span class="text">Design a nice theme</span>
+                                            <?php 
+                                            if(isset($_SESSION["s_uname"]))
+                                            {
+                                                echo '
+                                            <span class="text">用户登录成功</span>
                                             <!-- Emphasis label -->
-                                            <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                                            <small class="label label-danger"><i class="fa fa-clock-o"></i>'.$_SESSION['s_login_time'].'</small>';
+                                            }
+                                            ?>
                                             <!-- General tools such as edit or delete-->
                                             <div class="tools">
                                                 <i class="fa fa-edit"></i>
@@ -416,12 +415,7 @@ $_list=tieba_list();
                                         </li>
                                     </ul>
                                 </div><!-- /.box-body -->
-                                <div class="box-footer clearfix no-border">
-                                    <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-                                </div>
-                            </div><!-- /.box -->
-
-                          
+                            </div><!-- /.box -->                      
 
                         </section><!-- /.Left col -->
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -617,6 +611,16 @@ $_list=tieba_list();
                                         </thead>
                                         <tbody>
                                             <?php
+                                            mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+                                            $state = mysql_fetch_array(mysql_query('SELECT stoken FROM tck_user_bind WHERE username="'.$_SESSION['s_uname'].'"'))[0];
+                                            $exp='';
+                                            if(strpos($state,'ERROR') || $state=='')
+                                            {
+                                                $exp = '+0';
+                                                $state='云签到还未执行';
+                                            }else{
+                                                $exp = '+8';
+                                            }
                                             $table=array();
                                             $k=0;
                                             if($_list[0] == 0 )
@@ -624,7 +628,7 @@ $_list=tieba_list();
                                                 echo $_list[1];
                                             }else{
                                                 foreach ($_list as  $value) {
-                                                    $table[$k] .='<tr><td>'.$k.'</td><td>'.$value['utf8_name'].'</td><td>undefine</td><td>undefine</td></tr>';
+                                                    $table[$k] .='<tr><td>'.$k.'</td><td>'.$value['utf8_name'].'</td><td>'.$exp.'</td><td>'.$state.'</td></tr>';
                                                     $k++;
                                                 }
                                                  print_r(implode("",$table));
@@ -673,13 +677,59 @@ $_list=tieba_list();
             </aside>
             </div>
  <!--#############################################################################################-->
-     
+            <div class="tab-pane" id="state" name="state">
+            <aside class="right-side"> 
+                <section class="content-header">
+                    <h1>Data State</h1>
+                </section>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h3 class="box-title">贴吧数据统计(仅吧务可用)</h3>
+                            </div>
+
+                            <div class="box-body chart-responsive">
+                           
+                                <div class="input-group" id="search">
+                                    <input type="text" id="tieba_name" name="tieba_name" class="form-control" placeholder="输入你想查询的贴吧名称"/>
+                                    <span class="input-group-btn">
+                                        <button type='submit' id="submit_tieba_data" name='submit_tieba_data' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            
+                            </div>
+                            <table id="search_2" name="search_2" class="table table-bordered table-hover" style="display:none;">
+                            <thead>
+                                <td>时间</td>
+                                <td>访问用户</td>
+                                <td>客户端访问数</td>
+                                <td>主题数</td>
+                                <td>客户端主题数</td>
+                                <td>回复数</td>
+                                <td>客户端回复数</td>
+                                <td>签到数</td>
+                                <td>客户端签到数</td>
+                                <td>签到率</td>
+                                <td>新增会员数</td>
+                                <td>总会员数</td>
+                            </thead>
+                            <tbody id="append" name="append">
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+            </div>
+ <!--#############################################################################################-->
          </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="./js/jquery2.0.2.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
         <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
         <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
@@ -688,8 +738,9 @@ $_list=tieba_list();
         <script src="js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
         <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
         <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
-        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
-        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+        <script src="js/TCKJS/app.js" type="text/javascript"></script>
+        <script src="js/TCKJS/dashboard.js" type="text/javascript"></script>
+        <script src="js/TCKJS/demo.js" type="text/javascript"></script>
+        <script src="ajax/ajax_data.js" type="text/javascript"></script>
     </body>
 </html>

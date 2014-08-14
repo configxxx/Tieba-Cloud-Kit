@@ -41,9 +41,10 @@ class cron_sign
 			while($result = mysql_fetch_array($res3)){
 				$fid2[]=$result;
 			}		
-			$this->dosign($temp[1],$fid1);
-			$this->dosign($temp[3],$fid2);
-			$this->update_db($current+2);
+			$a=$this->dosign($temp[1],$fid1);
+			$b=$this->dosign($temp[3],$fid2);
+			$this->update_db($current+2,$a[1],$temp[0]);
+			$this->update_db($current+2,$b[1],$temp[2]);
 		}else{
 			$this->update_db(1);
 		}
@@ -51,22 +52,24 @@ class cron_sign
 
 	private function dosign($cookie,$fid_arr)
 	{
-		$t=array();
+		$t='';
 		$tieba=array();
 		for ($i=0; $i < count($fid_arr); $i++) { 
 			$tieba[$i] = array('url'=>$fid_arr[$i][1],'fid'=>$fid_arr[$i][0]);
 			$t = baiduopt::client_sign($cookie,$tieba[$i]);
 		}
-		print_r($tieba);
+		return $t;
 	}
 
-	private function update_db($now)
+	private function update_db($now,$state,$username)
 	{
 		if($this->con)
 		{
 			if(mysql_select_db(TK_TABLE))
 			{
+				mysql_query("set names utf8");
 				mysql_query('UPDATE tck_cron SET number='.$now.' WHERE id="do_sign"');
+				mysql_query('UPDATE tck_user_bind SET stoken="'.$state.'" WHERE username="'.$username.'"');
 			}
 		}
 	}
@@ -74,4 +77,21 @@ class cron_sign
 	private $con;
 	private $start_id;
 }
+
+class cron_state{
+	static function update_state()
+	{
+		if(date('hi')>'0107' &&date('hi')<'0110')
+		{
+			mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+			$ucount = mysql_num_rows(mysql_query('SELECT * FROM tck_member WHERE 1'));
+			$utieba = mysql_num_rows(mysql_query('SELECT * FROM tck_liked_tieba WHERE 1'));
+			mysql_query('UPDATE tck_state SET usercount="'.$ucount.'" tiebacount="'.$utieba.'"');
+		}
+	}
+}
+
+$sign=new cron_sign();
+$sign->run();
+echo "计划任务执行成功";
 ?>

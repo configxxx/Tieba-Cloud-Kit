@@ -92,4 +92,26 @@ function do_sign($username){
 	}
 	return $return_code;
 }
+/*
+function get_state()
+{
+	if(mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD))
+	{
+		if(mysql_select_db(TK_TABLE))
+		{
+			$res =  mysql_query('SELECT * FROM tck_state WHERE 1');
+			return mysql_fetch_array($res);
+		}
+	}
+}*/
+
+function tieba_get_data($tieba_name,$username)
+{
+	$cookie = get_cookie($username);
+	$ch = curl_init('http://tieba.baidu.com/bawu2/platform/dataExcel?word='.$tieba_name);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+	$result = curl_exec($ch);
+	return $result;
+}
 ?>

@@ -20,12 +20,12 @@ if(isset($_POST['submit_reg']))
 	{
 		session_start();
 		$_SESSION["s_uname"] = $_POST['username_log'];
+		$_SESSION["s_login_time"] = date('Hms');
 		setcookie(session_name(), session_id(), time() + 365*24*3600, "/");
 		header("Location:../index.php");
 	}else{
 		print_feedback(5);
 	}
-
 }else{
 	print_feedback(6);
 }
