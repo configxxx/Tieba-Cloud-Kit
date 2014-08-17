@@ -1,5 +1,5 @@
 <?php header("Content-Type: text/html;charset=utf-8");
-require_once(dirname(dirname(__FILE__)).'\lib\class.mysql.php');
+require_once(dirname(dirname(__FILE__)).'\lib\class.sqlserver.php');
 $configinc = dirname(dirname(__FILE__))."\lib\config\config.inc.php";
 //chmod($configinc,0755);
 //配置文件建立
@@ -12,10 +12,10 @@ $config=array('<?php header("Content-Type: text/html;charset=utf-8");'."\n",
 			  'define("TK_ROOT_NAME","'.$_GET['root_name'].'");'."\n",
 			  '?>');
 file_put_contents($configinc,$config);
-require_once($configinc);
-$mysql=new mysql_server_init(TK_HOST,TK_NAME,TK_PASSWORD,TK_TABLE);
-$mysql->sql_operator();
-$mysql->admin_query(TK_ROOT_NAME,TK_ROOT_PASSWORD);
+
+$mysql=new sqlserver();
+$mysql->install_init();
+$mysql->install_admin();
 ?>
 <div class="container">
 <div class="jumbotron">

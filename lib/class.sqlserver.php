@@ -66,6 +66,73 @@ class sql_base
 	protected $db;
 }
 
+class database
+{
+	public static function logout($username)
+	{
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				@mysql_query('UPDATE tck_user_bind SET cookie="",stoken="",user_baidu_id="",baidu_email="",baidu_mobile="",touxiang="" WHERE username="'.$username.'"');
+				header('Location:../index.php');
+			}
+		}
+	}
+	public static function con($sql_query,$username)
+	{
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				$check=mysql_query('SELECT uid FROM tck_user_bind WHERE username in("'.$username.'")');
+				if(mysql_num_rows($check))
+				{
+					mysql_query("SET NAMES utf8");
+					$result = @mysql_query($sql_query)
+					or print_feedback(21);
+					$ret = mysql_fetch_array($result);
+					return $ret;
+				}else{
+					exit();
+				}
+			}
+		}
+	}
+	public static function sign_get($username)
+	{
+		$result=array();
+		$con=mysql_connect(TK_HOST,TK_NAME,TK_PASSWORD);
+		if(!$con)
+		{
+			print_feedback(15);
+		}else{
+			if(mysql_select_db(TK_TABLE))
+			{
+				$check=mysql_query('SELECT * FROM tck_liked_tieba WHERE username in("'.$username.'")');
+				if(mysql_num_rows($check))
+				{
+					@mysql_query("SET NAMES utf8")
+					or print_feedback(21);
+					while ($ret = mysql_fetch_array($check)) {
+						array_push($result,$ret);
+					}
+					return $result;
+					
+				}else{
+					exit();
+				}
+			}
+		}
+	}
+}
+
 class sqlserver extends sql_base
 {
 	public function __construct()
@@ -119,5 +186,36 @@ class sqlserver extends sql_base
 		}
 	}
 
+	public function install_init()
+	{
+		if($this->db_select())
+		{
+			@mysql_query('CREATE DATABASE IF NOT EXISTS '.$this->dbname.' default charset utf8');
+			@mysql_query("set names utf8");
+			@mysql_query('CREATE TABLE tck_member(uid int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),password varchar(200))');
+			@mysql_query('CREATE TABLE tck_user_bind(uid int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),cookie varchar(256),stoken varchar(40),user_baidu_id varchar(50),baidu_email varchar(25),baidu_mobile varchar(13),touxiang varchar(50))');
+			@mysql_query('CREATE TABLE tck_liked_tieba(id int NOT NULL AUTO_INCREMENT PRIMARY KEY,username varchar(15),utf_8 varchar(256),url varchar(256),fid varchar(9))');
+			@mysql_query('CREATE TABLE tck_cron(id VARCHAR(10) ,number VARCHAR(5) ,nexttime VARCHAR(4))');
+			@mysql_query('CREATE TABLE tck_state(time VARCHAR(20),usercount VARCHAR(5) ,ipcount VARCHAR(5) ,tiebacount VARCHAR(4))');
+
+		}else{
+			exit();
+		}
+	}
+
+	public function install_admin()
+	{
+		if($this->db_select())
+		{
+			@mysql_query("set names utf8");
+				$salt=md5(TK_ROOT_PASSWORD);
+				$admin_name = TK_ROOT_NAME;
+				@mysql_query('INSERT INTO tck_state(time,usercount,ipcount,tiebacount) VALUES("'.date('Ymd').'","1","1","")');
+				@mysql_query('INSERT INTO tck_cron(id,number,nexttime) VALUES("do_sign","1","'.(time()+60).'")');
+				@mysql_query('INSERT INTO tck_member(uid,username,password) VALUES( 0 ,"'."$admin_name".'",'.'"'."$salt".'")');
+				@mysql_query('INSERT INTO tck_user_bind(uid,username) VALUES( 0 ,"'.TK_ROOT_NAME.'")');
+				@mysql_query('ALTER TABLE tck_member ORDER BY uid');
+		}
+	}
 }
 ?>

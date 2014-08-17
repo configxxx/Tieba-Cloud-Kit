@@ -5,7 +5,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="./css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link href="./css/tck.css" rel="stylesheet" type="text/css" />
     <script src="./js/jquery2.0.2.js" type="text/javascript"></script>
     <script  src="./js.bootstrap.min.js" type="text/javascript"></script>
 </head>
