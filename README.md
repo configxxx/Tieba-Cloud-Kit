@@ -12,11 +12,11 @@
 
 
 ##说明
-`UI Frame`   使用Bootstrap UI框架
+`UI Frame`   使用Bootstrap UI框架<br  /> 
 `签到`       部分签到使用kk sign post的数据.<br  />  
 `BUG`        Bug请反馈至1948638989@qq.com.<br  />  
 `Framework`  由于没有系统学习过PHP,导致代码写得很糟糕，接下来的时间我学习PHP以完善云工具箱功能和Code.<br />    
 
 
 
-Copyright (C) 2014 Tieba Cloud Kit by racal.Comply with GPL open source license agreement.
+Copyright (C) 2014 Tieba Cloud Kit by racal.Comply with MIT open source license agreement.
